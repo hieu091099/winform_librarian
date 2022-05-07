@@ -98,19 +98,25 @@ namespace ManageBook.GUI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            try
-            {
-                
-                BookBUS bus = new BookBUS();
-                bus.removeBook(RowSelected.Id);
+            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa quyển sách '{RowSelected.NameBook}!'", "Thông Báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Information);
 
-                LoadData();
-
-            }
-            catch (Exception ex)
+            if (dr == DialogResult.Yes)
             {
-                throw ex;
+                try
+                {
+
+                    BookBUS bus = new BookBUS();
+                    bus.removeBook(RowSelected.Id);
+                    LoadData();
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
+            
         }
 
         private void dgBooks_CellClick(object sender, DataGridViewCellEventArgs e)
