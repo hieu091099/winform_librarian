@@ -103,6 +103,7 @@ namespace ManageBook.GUI
             this.btnSearch.Size = new System.Drawing.Size(90, 40);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnReload
             // 

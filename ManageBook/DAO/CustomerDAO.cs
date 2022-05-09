@@ -32,6 +32,35 @@ namespace ManageBook.DAO
             }
         }
 
+        public DataTable getCustomers(CustomerDTO b)
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT * FROM customers WHERE 1=1 ";
+                if(b.FullName != null)
+                {
+                    strSql += $" AND fullName like '{b.FullName}'";
+                }
+                if(b.Birthday != null)
+                {
+                    strSql += $" AND birthday = '{b.Birthday}'";
+                }
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
+
         public int insertCustomer(CustomerDTO b)
         {
             int nRow = 0;

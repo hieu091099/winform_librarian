@@ -11,6 +11,18 @@ namespace ManageBook.BUS
 {
     public class CustomerBUS
     {
+        public DataTable getCustomers(CustomerDTO cus)
+        {
+            try
+            {
+                CustomerDAO b = new CustomerDAO();
+                return b.getCustomers(cus);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable getAllCustomers()
         {
             try

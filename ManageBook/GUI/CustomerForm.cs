@@ -205,5 +205,46 @@ namespace ManageBook.GUI
                 MessageBox.Show("Vui lòng tắt form chỉnh sửa hiện tại!");
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    CustomerBUS b = new CustomerBUS();
+                    //DataTable dt = b.getCustomers();
+                    dgCustomers.DataSource = dt;
+                    dgCustomers.Columns[0].HeaderText = "ID";
+                    dgCustomers.Columns[1].HeaderText = "Họ Tên";
+                    dgCustomers.Columns[2].HeaderText = "Giới Tính";
+                    dgCustomers.Columns[3].HeaderText = "Sinh Nhật";
+                    dgCustomers.Columns[4].HeaderText = "Email";
+                    dgCustomers.Columns[5].HeaderText = "Số Điện Thoại";
+                    dgCustomers.Columns[6].HeaderText = "Địa Chỉ";
+
+                    dgCustomers.Columns[0].Width = 40;
+                    dgCustomers.Columns[1].Width = 180;
+                    dgCustomers.Columns[2].Width = 60;
+                    dgCustomers.Columns[3].Width = 80;
+                    dgCustomers.Columns[4].Width = 120;
+                    dgCustomers.Columns[5].Width = 100;
+                    dgCustomers.Columns[6].Width = 300;
+
+
+                   
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
