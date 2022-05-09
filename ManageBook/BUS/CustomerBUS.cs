@@ -9,48 +9,50 @@ using System.Threading.Tasks;
 
 namespace ManageBook.BUS
 {
-    public class BookBUS
+    public class CustomerBUS
     {
-        public DataTable getAllBooks()
+        public DataTable getAllCustomers()
         {
             try
             {
-                BookDAO b = new BookDAO();
-                return b.getAllBooks();
-            }catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public int insertBook(BookDTO b)
-        {
-            try
-            {
-                BookDAO dao = new BookDAO();
-                return dao.insertBook(b);
-            }catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public int editBook(BookDTO b)
-        {
-            try
-            {
-                BookDAO dao = new BookDAO();
-                return dao.editBook(b);
+                CustomerDAO b = new CustomerDAO();
+                return b.getAllCustomers();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public int removeBook(int id)
+        public int insertCustomer(CustomerDTO b)
         {
             try
             {
-                BookDAO dao = new BookDAO();
-                return dao.removeBook(id);
+                CustomerDAO dao = new CustomerDAO();
+                return dao.insertCustomer(b);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int editCustomer(CustomerDTO b)
+        {
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                return dao.editCustomer(b);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int removeCustomer(int id)
+        {
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                return dao.removeCustomer(id);
             }
             catch (Exception ex)
             {

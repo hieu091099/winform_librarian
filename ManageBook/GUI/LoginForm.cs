@@ -40,6 +40,7 @@ namespace ManageBook.GUI
                 {
                     Dashboard db = new Dashboard();
                     this.Hide();
+                    db.StartPosition = FormStartPosition.CenterScreen;
                     db.Show();
                 }
                 else

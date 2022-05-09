@@ -41,6 +41,7 @@
     <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Map.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -65,6 +66,8 @@
     <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
@@ -81,17 +84,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\BookBUS.cs" />
+    <Compile Include="BUS\CustomerBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="DAO\BookDAO.cs" />
+    <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\Provider.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="GUI\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\EditBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EditBook.Designer.cs">
+      <DependentUpon>EditBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\EditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EditCustomer.Designer.cs">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\LoginForm.cs">
       <SubType>Form</SubType>
@@ -107,8 +131,17 @@
       <DependentUpon>ManageBook.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EditBook.resx">
+      <DependentUpon>EditBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EditCustomer.resx">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

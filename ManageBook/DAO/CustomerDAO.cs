@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 
 namespace ManageBook.DAO
 {
-    public class BookDAO
+    public class CustomerDAO
     {
-        public DataTable getAllBooks()
+        public DataTable getAllCustomers()
         {
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM books";
+                string strSql = "SELECT * FROM customers";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -31,46 +32,22 @@ namespace ManageBook.DAO
             }
         }
 
-        public int insertBook(BookDTO b)
+        public int insertCustomer(CustomerDTO b)
         {
             int nRow = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "INSERT INTO books (nameBook, kind, author, price) VALUES(@nameBook, @kind, @author, @price)";
+                string strSql = "INSERT INTO customers (fullName, gender, birthday, email, phone, address) VALUES(@fullName, @gender, @birthday, @email, @phone, @address)";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@nameBook", Value = b.NameBook },
-                            new SqlParameter { ParameterName = "@kind", Value = b.Kind },
-                            new SqlParameter { ParameterName = "@author", Value = b.Author },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price }
-                    );
+                            new SqlParameter { ParameterName = "@fullName", Value = b.FullName },
+                            new SqlParameter { ParameterName = "@gender", Value = b.Gender },
+                            new SqlParameter { ParameterName = "@birthday", Value = b.Birthday },
+                            new SqlParameter { ParameterName = "@email", Value = b.Email },
+                            new SqlParameter { ParameterName = "@phone", Value = b.Phone },
+                            new SqlParameter { ParameterName = "@address", Value = b.Address }
 
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                provider.DisConnect();
-            }
-            return nRow;
-        }
-        public int editBook(BookDTO b)
-        {
-            int nRow = 0;
-            Provider provider = new Provider();
-            try
-            {
-                string strSql = "UPDATE books SET nameBook = @nameBook, kind = @kind, author = @author, price = @price WHERE id = @id";
-                provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@id", Value = b.Id },
-                            new SqlParameter { ParameterName = "@nameBook", Value = b.NameBook },
-                            new SqlParameter { ParameterName = "@kind", Value = b.Kind },
-                            new SqlParameter { ParameterName = "@author", Value = b.Author },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price }
                     );
 
             }
@@ -84,13 +61,41 @@ namespace ManageBook.DAO
             }
             return nRow;
         }
-        public int removeBook(int id)
+        public int editCustomer(CustomerDTO b)
         {
             int nRow = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "DELETE FROM books WHERE id = @id";
+                string strSql = "UPDATE customers SET fullName = @fullName, gender = @gender, birthday = @birthday, email = @email , phone = @phone, address = @address WHERE id = @id";
+                provider.Connect();
+                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                            new SqlParameter { ParameterName = "@id", Value = b.Id },
+                            new SqlParameter { ParameterName = "@fullName", Value = b.FullName },
+                            new SqlParameter { ParameterName = "@gender", Value = b.Gender },
+                            new SqlParameter { ParameterName = "@birthday", Value = b.Birthday },
+                            new SqlParameter { ParameterName = "@email", Value = b.Email },
+                            new SqlParameter { ParameterName = "@phone", Value = b.Phone },
+                            new SqlParameter { ParameterName = "@address", Value = b.Address }
+                    );
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+            return nRow;
+        }
+        public int removeCustomer(int id)
+        {
+            int nRow = 0;
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "DELETE FROM customers WHERE id = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = id }

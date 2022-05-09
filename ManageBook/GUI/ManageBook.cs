@@ -59,6 +59,13 @@ namespace ManageBook.GUI
                 dgBooks.Columns[4].HeaderText = "Tác Giả";
                 dgBooks.Columns[5].HeaderText = "Giá";
 
+                dgBooks.Columns[0].Width = 40;
+                dgBooks.Columns[1].Width = 300;
+                dgBooks.Columns[2].Width = 80;
+                dgBooks.Columns[3].Width = 80;
+                dgBooks.Columns[4].Width = 250;
+                dgBooks.Columns[5].Width = 100;
+
                 if (dt.Rows.Count > 0)
                 {
                     dgBooks.Rows[0].Selected = true;
@@ -103,20 +110,37 @@ namespace ManageBook.GUI
 
             if (dr == DialogResult.Yes)
             {
-                try
+                if(RowSelected != null)
                 {
+                    try
+                    {
 
-                    BookBUS bus = new BookBUS();
-                    bus.removeBook(RowSelected.Id);
-                    LoadData();
+                        BookBUS bus = new BookBUS();
+                        bus.removeBook(RowSelected.Id);
+                        LoadData();
 
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+               
             }
             
+        }
+        private bool CheckOpened(string name)
+        {
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void dgBooks_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -139,7 +163,36 @@ namespace ManageBook.GUI
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
         {
+            if (!CheckOpened("EditBook"))
+            {
+                if (RowSelected != null)
+                {
+                    EditBook formEdit = new EditBook();
+                    formEdit.Book = RowSelected;
+                    formEdit.StartPosition = FormStartPosition.CenterScreen;
+                    formEdit.ShowDialog();
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng tắt form chỉnh sửa hiện tại!");
+            }
+            
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            txtTacGia.Text = "";
+            txtTenSach.Text = "";
+            txtGiaBan.Text = "";
+            cboTheLoai.SelectedItem = "";
+        }
+
+        private void dgBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
 }
+

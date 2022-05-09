@@ -17,8 +17,10 @@ namespace ManageBook.GUI
             InitializeComponent();
             ManageBook frm = new ManageBook();
             frm.TopLevel = false;
-            frm.AutoScroll = true;
+            //frm.AutoScroll = true;
             frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
@@ -35,6 +37,7 @@ namespace ManageBook.GUI
             frm.TopLevel = false;
             frm.AutoScroll = true;
             frm.FormBorderStyle = FormBorderStyle.None;
+            this.pContainerP.Controls.Clear();
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
@@ -47,6 +50,18 @@ namespace ManageBook.GUI
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             this.BackColor = Color.FromArgb(62, 91, 135);
+        }
+
+        private void accordionControlElement12_Click(object sender, EventArgs e)
+        {
+            CustomerForm frm = new CustomerForm();
+            frm.TopLevel = false;
+            frm.AutoScroll = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
         }
     }
 }

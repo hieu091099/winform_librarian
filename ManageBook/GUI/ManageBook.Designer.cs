@@ -33,13 +33,15 @@ namespace ManageBook.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageBook));
             this.dgBooks = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.pbBook = new System.Windows.Forms.PictureBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtGiaBan = new System.Windows.Forms.TextBox();
             this.cboTheLoai = new System.Windows.Forms.ComboBox();
@@ -49,8 +51,8 @@ namespace ManageBook.GUI
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.pbBook = new System.Windows.Forms.PictureBox();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dgBooks)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBook)).BeginInit();
@@ -59,14 +61,16 @@ namespace ManageBook.GUI
             // dgBooks
             // 
             this.dgBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgBooks.Location = new System.Drawing.Point(4, 183);
+            this.dgBooks.Location = new System.Drawing.Point(3, 206);
             this.dgBooks.Name = "dgBooks";
             this.dgBooks.Size = new System.Drawing.Size(958, 443);
             this.dgBooks.TabIndex = 0;
             this.dgBooks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBooks_CellClick);
+            this.dgBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBooks_CellContentClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.simpleButton1);
             this.groupBox1.Controls.Add(this.simpleButton7);
             this.groupBox1.Controls.Add(this.pbBook);
@@ -85,12 +89,41 @@ namespace ManageBook.GUI
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl1);
-            this.groupBox1.Location = new System.Drawing.Point(4, 12);
+            this.groupBox1.Location = new System.Drawing.Point(3, 35);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(958, 165);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(856, 111);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.simpleButton1.Location = new System.Drawing.Point(209, 110);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(77, 40);
+            this.simpleButton1.TabIndex = 16;
+            this.simpleButton1.Text = "Edit";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton7.ImageOptions.SvgImage")));
+            this.simpleButton7.Location = new System.Drawing.Point(696, 127);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(79, 23);
+            this.simpleButton7.TabIndex = 15;
+            this.simpleButton7.Text = "Clear";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
             // 
             // simpleButton6
             // 
@@ -104,7 +137,7 @@ namespace ManageBook.GUI
             // 
             // btnSearch
             // 
-            this.btnSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton4.ImageOptions.SvgImage")));
+            this.btnSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSearch.ImageOptions.SvgImage")));
             this.btnSearch.Location = new System.Drawing.Point(23, 110);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 40);
@@ -113,7 +146,7 @@ namespace ManageBook.GUI
             // 
             // btnReload
             // 
-            this.btnReload.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton5.ImageOptions.SvgImage")));
+            this.btnReload.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnReload.ImageOptions.SvgImage")));
             this.btnReload.Location = new System.Drawing.Point(480, 110);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(83, 40);
@@ -123,7 +156,7 @@ namespace ManageBook.GUI
             // 
             // btnRemove
             // 
-            this.btnRemove.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton3.ImageOptions.SvgImage")));
+            this.btnRemove.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRemove.ImageOptions.SvgImage")));
             this.btnRemove.Location = new System.Drawing.Point(292, 110);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(91, 40);
@@ -133,31 +166,23 @@ namespace ManageBook.GUI
             // 
             // btnCancel
             // 
-            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
+            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
             this.btnCancel.Location = new System.Drawing.Point(389, 110);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 40);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Clear";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage1")));
+            this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
             this.btnSave.Location = new System.Drawing.Point(119, 110);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 40);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // pbBook
-            // 
-            this.pbBook.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbBook.Location = new System.Drawing.Point(599, 30);
-            this.pbBook.Name = "pbBook";
-            this.pbBook.Size = new System.Drawing.Size(176, 91);
-            this.pbBook.TabIndex = 9;
-            this.pbBook.TabStop = false;
             // 
             // labelControl5
             // 
@@ -239,25 +264,26 @@ namespace ManageBook.GUI
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Tên Sách:";
             // 
-            // simpleButton7
+            // pbBook
             // 
-            this.simpleButton7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton7.ImageOptions.SvgImage")));
-            this.simpleButton7.Location = new System.Drawing.Point(696, 127);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(79, 23);
-            this.simpleButton7.TabIndex = 15;
-            this.simpleButton7.Text = "Clear";
-            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
+            this.pbBook.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbBook.Location = new System.Drawing.Point(599, 30);
+            this.pbBook.Name = "pbBook";
+            this.pbBook.Size = new System.Drawing.Size(176, 91);
+            this.pbBook.TabIndex = 9;
+            this.pbBook.TabStop = false;
             // 
-            // simpleButton1
+            // labelControl7
             // 
-            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(209, 110);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(77, 40);
-            this.simpleButton1.TabIndex = 16;
-            this.simpleButton1.Text = "Edit";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Appearance.Options.UseForeColor = true;
+            this.labelControl7.Location = new System.Drawing.Point(3, 2);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(134, 27);
+            this.labelControl7.TabIndex = 5;
+            this.labelControl7.Text = "Quản Lý Sách";
             // 
             // ManageBook
             // 
@@ -265,7 +291,8 @@ namespace ManageBook.GUI
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 627);
+            this.ClientSize = new System.Drawing.Size(964, 655);
+            this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgBooks);
             this.Name = "ManageBook";
@@ -274,6 +301,7 @@ namespace ManageBook.GUI
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBook)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -299,5 +327,7 @@ namespace ManageBook.GUI
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private DevExpress.XtraEditors.SimpleButton simpleButton7;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.Button button1;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }
