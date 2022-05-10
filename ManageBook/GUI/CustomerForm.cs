@@ -42,8 +42,8 @@ namespace ManageBook.GUI
                 dgCustomers.Columns[6].HeaderText = "Địa Chỉ";
 
                 dgCustomers.Columns[0].Width = 40;
-                dgCustomers.Columns[1].Width = 180; 
-                dgCustomers.Columns[2].Width = 60; 
+                dgCustomers.Columns[1].Width = 180;
+                dgCustomers.Columns[2].Width = 60;
                 dgCustomers.Columns[3].Width = 80;
                 dgCustomers.Columns[4].Width = 120;
                 dgCustomers.Columns[5].Width = 100;
@@ -58,11 +58,11 @@ namespace ManageBook.GUI
                     RowSelected.FullName = dgCustomers.SelectedRows[0].Cells["fullname"].Value.ToString();
                     RowSelected.Address = dgCustomers.SelectedRows[0].Cells["address"].Value.ToString();
                     RowSelected.Birthday = Convert.ToDateTime(dgCustomers.SelectedRows[0].Cells["birthday"].Value);
-                    RowSelected.Gender  = Convert.ToBoolean(dgCustomers.SelectedRows[0].Cells["gender"].Value);
-                    RowSelected.Phone = Int32.Parse(dgCustomers.SelectedRows[0].Cells["phone"].Value.ToString());
-                    RowSelected.Email = dgCustomers.SelectedRows[0].Cells["email"].Value.ToString(); 
+                    RowSelected.Gender = Convert.ToBoolean(dgCustomers.SelectedRows[0].Cells["gender"].Value);
+                    RowSelected.Phone = dgCustomers.SelectedRows[0].Cells["phone"].Value.ToString();
+                    RowSelected.Email = dgCustomers.SelectedRows[0].Cells["email"].Value.ToString();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace ManageBook.GUI
             {
                 CustomerDTO b = new CustomerDTO();
                 b.FullName = txtHoTen.Text;
-                if(cboGioiTinh.SelectedItem == "Nam")
+                if (cboGioiTinh.SelectedItem == "Nam")
                 {
                     b.Gender = true;
                 }
@@ -87,7 +87,7 @@ namespace ManageBook.GUI
                 b.Birthday = deNgaySinh.DateTime;
                 b.Email = txtEmail.Text;
                 b.Address = rtDiaChi.Text;
-                b.Phone = Int32.Parse(txtSDT.Text);
+                b.Phone = txtSDT.Text;
 
                 CustomerBUS bus = new CustomerBUS();
                 bus.insertCustomer(b);
@@ -152,8 +152,8 @@ namespace ManageBook.GUI
             RowSelected.FullName = row.Cells["fullname"].Value.ToString();
             RowSelected.Address = row.Cells["address"].Value.ToString();
             RowSelected.Birthday = Convert.ToDateTime(row.Cells["birthday"].Value);
-            RowSelected.Gender  = Convert.ToBoolean(row.Cells["gender"].Value);
-            RowSelected.Phone = Int32.Parse(row.Cells["phone"].Value.ToString());
+            RowSelected.Gender = Convert.ToBoolean(row.Cells["gender"].Value);
+            RowSelected.Phone = row.Cells["phone"].Value.ToString();
             RowSelected.Email = row.Cells["email"].Value.ToString();
 
 
@@ -208,43 +208,46 @@ namespace ManageBook.GUI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
             try
             {
-                try
+                CustomerDTO b = new CustomerDTO();
+                var fullName = txtHoTen.Text;
+                var email = txtEmail.Text;
+                var birthday= "";
+                if (deNgaySinh.EditValue != null)
                 {
-                    CustomerBUS b = new CustomerBUS();
-                    //DataTable dt = b.getCustomers();
-                    dgCustomers.DataSource = dt;
-                    dgCustomers.Columns[0].HeaderText = "ID";
-                    dgCustomers.Columns[1].HeaderText = "Họ Tên";
-                    dgCustomers.Columns[2].HeaderText = "Giới Tính";
-                    dgCustomers.Columns[3].HeaderText = "Sinh Nhật";
-                    dgCustomers.Columns[4].HeaderText = "Email";
-                    dgCustomers.Columns[5].HeaderText = "Số Điện Thoại";
-                    dgCustomers.Columns[6].HeaderText = "Địa Chỉ";
-
-                    dgCustomers.Columns[0].Width = 40;
-                    dgCustomers.Columns[1].Width = 180;
-                    dgCustomers.Columns[2].Width = 60;
-                    dgCustomers.Columns[3].Width = 80;
-                    dgCustomers.Columns[4].Width = 120;
-                    dgCustomers.Columns[5].Width = 100;
-                    dgCustomers.Columns[6].Width = 300;
-
-
-                   
+                    birthday = deNgaySinh.EditValue.ToString();
+                }
+                
+                var gender = -1;
+                if(cboGioiTinh.SelectedItem == "Nam")
+                {
+                     gender = 1;
+                }
+                if (cboGioiTinh.SelectedItem == "Nữ")
+                {
+                     gender = 0;
 
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var address = rtDiaChi.Text;
+                var phone = txtSDT.Text;
+                
+                CustomerBUS bus = new CustomerBUS();
+                DataTable dt = bus.getCustomers(fullName, email, birthday, gender, address, phone);
+                dgCustomers.DataSource = dt;
+               
+
+
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
+
+
         }
     }
 }

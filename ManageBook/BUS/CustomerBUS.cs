@@ -11,12 +11,12 @@ namespace ManageBook.BUS
 {
     public class CustomerBUS
     {
-        public DataTable getCustomers(CustomerDTO cus)
+        public DataTable getCustomers(string fullName,string email,string birthday,int gender,string address,string phone)
         {
             try
             {
                 CustomerDAO b = new CustomerDAO();
-                return b.getCustomers(cus);
+                return b.getCustomers(fullName, email, birthday, gender, address, phone);
             }
             catch (Exception ex)
             {

@@ -63,5 +63,14 @@ namespace ManageBook.GUI
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
+
+        private void accordionControlElement18_Click(object sender, EventArgs e)
+        {
+            ManageSheet frm = new ManageSheet();
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

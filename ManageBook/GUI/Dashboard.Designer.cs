@@ -40,7 +40,6 @@ namespace ManageBook.GUI
             this.accordionControlElement16 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement17 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement18 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement20 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement19 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -129,8 +128,8 @@ namespace ManageBook.GUI
             // 
             this.accordionControlElement16.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement17,
-            this.accordionControlElement18,
-            this.accordionControlElement20});
+            this.accordionControlElement18});
+            this.accordionControlElement16.Expanded = true;
             this.accordionControlElement16.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement16.ImageOptions.Image")));
             this.accordionControlElement16.Name = "accordionControlElement16";
             this.accordionControlElement16.Text = "Phiếu/ Hóa Đơn";
@@ -145,13 +144,8 @@ namespace ManageBook.GUI
             // 
             this.accordionControlElement18.Name = "accordionControlElement18";
             this.accordionControlElement18.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement18.Text = "Phiếu Nhập Hàng";
-            // 
-            // accordionControlElement20
-            // 
-            this.accordionControlElement20.Name = "accordionControlElement20";
-            this.accordionControlElement20.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement20.Text = "Phiếu Thu Tiền";
+            this.accordionControlElement18.Text = "Phiếu ";
+            this.accordionControlElement18.Click += new System.EventHandler(this.accordionControlElement18_Click);
             // 
             // accordionControlElement6
             // 
@@ -173,7 +167,6 @@ namespace ManageBook.GUI
             this.accordionControlElement7.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement12,
             this.accordionControlElement13});
-            this.accordionControlElement7.Expanded = true;
             this.accordionControlElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement7.ImageOptions.Image")));
             this.accordionControlElement7.Name = "accordionControlElement7";
             this.accordionControlElement7.Text = "Khách Hàng";
@@ -354,7 +347,6 @@ namespace ManageBook.GUI
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement17;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement18;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement20;
         private System.Windows.Forms.Panel pContainerP;
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer pContainer;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

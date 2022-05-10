@@ -16,7 +16,7 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM customers";
+                string strSql = "SELECT * FROM customers ";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
@@ -32,19 +32,39 @@ namespace ManageBook.DAO
             }
         }
 
-        public DataTable getCustomers(CustomerDTO b)
+        public DataTable getCustomers(string fullName, string email, string birthday, int gender, string address, string phone)
         {
             Provider provider = new Provider();
             try
             {
                 string strSql = "SELECT * FROM customers WHERE 1=1 ";
-                if(b.FullName != null)
+                if(fullName != "")
                 {
-                    strSql += $" AND fullName like '{b.FullName}'";
+                    strSql += $" AND fullName like N'%{fullName}%'";
                 }
-                if(b.Birthday != null)
+                if(birthday != "" )
                 {
-                    strSql += $" AND birthday = '{b.Birthday}'";
+                    DateTime date = DateTime.Parse(birthday);
+                    strSql += $" AND birthday = '{date.ToString("yyyyMMdd")}'";
+                }
+                if(email != "")
+                {
+                    strSql += $" AND email like '{email}%'";
+
+                }
+                if (phone != "")
+                {
+                    strSql += $" AND phone like '{phone}%'";
+
+                }
+                if(address != "")
+                {
+                    strSql += $" AND address like N'%{address}%'";
+
+                }
+                if (gender != -1 )
+                {
+                       strSql += $" AND gender = {gender}";
                 }
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);

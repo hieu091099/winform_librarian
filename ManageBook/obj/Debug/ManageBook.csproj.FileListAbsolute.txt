@@ -231,3 +231,5 @@ C:\Users\Administrator\source\repos\ManageBook\ManageBook\bin\Debug\ja\DevExpres
 C:\Users\Administrator\source\repos\ManageBook\ManageBook\bin\Debug\ru\DevExpress.XtraScheduler.v19.2.Core.resources.dll
 C:\Users\Administrator\source\repos\ManageBook\ManageBook\obj\Debug\ManageBook.GUI.CustomerForm.resources
 C:\Users\Administrator\source\repos\ManageBook\ManageBook\obj\Debug\ManageBook.GUI.EditCustomer.resources
+C:\Users\Administrator\source\repos\ManageBook\ManageBook\obj\Debug\ManageBook.GUI.ManageSheet.resources
+C:\Users\Administrator\source\repos\ManageBook\ManageBook\obj\Debug\ManageBook.GUI.FormFunction.NewOrderBook.resources

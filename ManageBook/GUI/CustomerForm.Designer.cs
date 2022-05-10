@@ -31,6 +31,13 @@ namespace ManageBook.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.txtDiaChi = new System.Windows.Forms.GroupBox();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.cboGioiTinh = new System.Windows.Forms.ComboBox();
+            this.rtDiaChi = new System.Windows.Forms.RichTextBox();
+            this.deNgaySinh = new DevExpress.XtraEditors.DateEdit();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
@@ -43,18 +50,13 @@ namespace ManageBook.GUI
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dgCustomers = new System.Windows.Forms.DataGridView();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.deNgaySinh = new DevExpress.XtraEditors.DateEdit();
-            this.rtDiaChi = new System.Windows.Forms.RichTextBox();
-            this.cboGioiTinh = new System.Windows.Forms.ComboBox();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.txtDiaChi.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDiaChi
@@ -84,6 +86,69 @@ namespace ManageBook.GUI
             this.txtDiaChi.TabIndex = 3;
             this.txtDiaChi.TabStop = false;
             this.txtDiaChi.Text = "Thông Tin";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(448, 65);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(44, 13);
+            this.labelControl3.TabIndex = 24;
+            this.labelControl3.Text = "Giới Tính:";
+            // 
+            // cboGioiTinh
+            // 
+            this.cboGioiTinh.FormattingEnabled = true;
+            this.cboGioiTinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cboGioiTinh.Location = new System.Drawing.Point(498, 61);
+            this.cboGioiTinh.Name = "cboGioiTinh";
+            this.cboGioiTinh.Size = new System.Drawing.Size(65, 21);
+            this.cboGioiTinh.TabIndex = 23;
+            // 
+            // rtDiaChi
+            // 
+            this.rtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtDiaChi.Location = new System.Drawing.Point(635, 26);
+            this.rtDiaChi.Name = "rtDiaChi";
+            this.rtDiaChi.Size = new System.Drawing.Size(216, 51);
+            this.rtDiaChi.TabIndex = 22;
+            this.rtDiaChi.Text = "";
+            // 
+            // deNgaySinh
+            // 
+            this.deNgaySinh.EditValue = null;
+            this.deNgaySinh.Location = new System.Drawing.Point(320, 62);
+            this.deNgaySinh.Name = "deNgaySinh";
+            this.deNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deNgaySinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deNgaySinh.Size = new System.Drawing.Size(122, 20);
+            this.deNgaySinh.TabIndex = 21;
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.Location = new System.Drawing.Point(81, 61);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(154, 21);
+            this.txtSDT.TabIndex = 19;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(578, 29);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(38, 13);
+            this.labelControl5.TabIndex = 18;
+            this.labelControl5.Text = "Địa Chỉ:";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(27, 64);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(24, 13);
+            this.labelControl6.TabIndex = 17;
+            this.labelControl6.Text = "SĐT:";
             // 
             // simpleButton1
             // 
@@ -193,76 +258,13 @@ namespace ManageBook.GUI
             this.dgCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomers_CellClick);
             this.dgCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomers_CellContentClick);
             // 
-            // txtSDT
-            // 
-            this.txtSDT.Location = new System.Drawing.Point(81, 61);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(154, 21);
-            this.txtSDT.TabIndex = 19;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(578, 29);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(38, 13);
-            this.labelControl5.TabIndex = 18;
-            this.labelControl5.Text = "Địa Chỉ:";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(27, 64);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(24, 13);
-            this.labelControl6.TabIndex = 17;
-            this.labelControl6.Text = "SĐT:";
-            // 
-            // deNgaySinh
-            // 
-            this.deNgaySinh.EditValue = null;
-            this.deNgaySinh.Location = new System.Drawing.Point(320, 62);
-            this.deNgaySinh.Name = "deNgaySinh";
-            this.deNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deNgaySinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deNgaySinh.Size = new System.Drawing.Size(122, 20);
-            this.deNgaySinh.TabIndex = 21;
-            // 
-            // rtDiaChi
-            // 
-            this.rtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtDiaChi.Location = new System.Drawing.Point(635, 26);
-            this.rtDiaChi.Name = "rtDiaChi";
-            this.rtDiaChi.Size = new System.Drawing.Size(216, 51);
-            this.rtDiaChi.TabIndex = 22;
-            this.rtDiaChi.Text = "";
-            // 
-            // cboGioiTinh
-            // 
-            this.cboGioiTinh.FormattingEnabled = true;
-            this.cboGioiTinh.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.cboGioiTinh.Location = new System.Drawing.Point(498, 61);
-            this.cboGioiTinh.Name = "cboGioiTinh";
-            this.cboGioiTinh.Size = new System.Drawing.Size(65, 21);
-            this.cboGioiTinh.TabIndex = 23;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(448, 65);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(44, 13);
-            this.labelControl3.TabIndex = 24;
-            this.labelControl3.Text = "Giới Tính:";
-            // 
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 16F);
             this.labelControl7.Appearance.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new System.Drawing.Point(3, 0);
+            this.labelControl7.Location = new System.Drawing.Point(351, 0);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(215, 25);
             this.labelControl7.TabIndex = 4;
@@ -282,9 +284,10 @@ namespace ManageBook.GUI
             this.Text = "CustomerForm";
             this.txtDiaChi.ResumeLayout(false);
             this.txtDiaChi.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +316,6 @@ namespace ManageBook.GUI
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.ComboBox cboGioiTinh;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.DateTimeChartRangeControlClient dateTimeChartRangeControlClient1;
     }
 }
