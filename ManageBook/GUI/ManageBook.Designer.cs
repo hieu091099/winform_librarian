@@ -141,6 +141,7 @@ namespace ManageBook.GUI
             this.btnSearch.Size = new System.Drawing.Size(90, 40);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnReload
             // 
@@ -196,6 +197,7 @@ namespace ManageBook.GUI
             this.txtGiaBan.Name = "txtGiaBan";
             this.txtGiaBan.Size = new System.Drawing.Size(121, 21);
             this.txtGiaBan.TabIndex = 7;
+            this.txtGiaBan.TextChanged += new System.EventHandler(this.txtGiaBan_TextChanged);
             // 
             // cboTheLoai
             // 

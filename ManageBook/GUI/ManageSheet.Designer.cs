@@ -33,14 +33,11 @@ namespace ManageBook.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSheet));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgOrderBook = new System.Windows.Forms.DataGridView();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtTacGia = new System.Windows.Forms.TextBox();
@@ -52,14 +49,17 @@ namespace ManageBook.GUI
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderBook)).BeginInit();
+            this.xtraTabPage2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -80,38 +80,7 @@ namespace ManageBook.GUI
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2});
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Appearance.PageClient.BackColor = System.Drawing.Color.White;
-            this.xtraTabPage2.Appearance.PageClient.Options.UseBackColor = true;
-            this.xtraTabPage2.Controls.Add(this.panel2);
-            this.xtraTabPage2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage2.ImageOptions.Image")));
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(958, 637);
-            this.xtraTabPage2.Text = "Phiếu Thu Nợ";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.labelControl1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(958, 637);
-            this.panel2.TabIndex = 0;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(358, 3);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(131, 27);
-            this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "Phiếu Thu Nợ";
+            this.xtraTabControl1.Click += new System.EventHandler(this.xtraTabControl1_Click);
             // 
             // xtraTabPage1
             // 
@@ -144,6 +113,7 @@ namespace ManageBook.GUI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(958, 637);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // simpleButton1
             // 
@@ -153,23 +123,25 @@ namespace ManageBook.GUI
             this.simpleButton1.Size = new System.Drawing.Size(77, 40);
             this.simpleButton1.TabIndex = 16;
             this.simpleButton1.Text = "Edit";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.dgOrderBook);
             this.panel3.Location = new System.Drawing.Point(4, 157);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(951, 477);
             this.panel3.TabIndex = 8;
             // 
-            // dataGridView1
+            // dgOrderBook
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(951, 477);
-            this.dataGridView1.TabIndex = 0;
+            this.dgOrderBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrderBook.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgOrderBook.Location = new System.Drawing.Point(0, 0);
+            this.dgOrderBook.Name = "dgOrderBook";
+            this.dgOrderBook.Size = new System.Drawing.Size(951, 477);
+            this.dgOrderBook.TabIndex = 0;
+            this.dgOrderBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrderBook_CellClick_1);
             // 
             // btnSearch
             // 
@@ -179,6 +151,7 @@ namespace ManageBook.GUI
             this.btnSearch.Size = new System.Drawing.Size(90, 40);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // labelControl7
             // 
@@ -215,6 +188,7 @@ namespace ManageBook.GUI
             this.btnReload.Size = new System.Drawing.Size(83, 40);
             this.btnReload.TabIndex = 13;
             this.btnReload.Text = "Reload";
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // txtTenSach
             // 
@@ -250,6 +224,7 @@ namespace ManageBook.GUI
             this.btnRemove.Size = new System.Drawing.Size(91, 40);
             this.btnRemove.TabIndex = 12;
             this.btnRemove.Text = "Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // labelControl3
             // 
@@ -277,6 +252,38 @@ namespace ManageBook.GUI
             this.btnSave.Text = "New";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Appearance.PageClient.BackColor = System.Drawing.Color.White;
+            this.xtraTabPage2.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabPage2.Controls.Add(this.panel2);
+            this.xtraTabPage2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage2.ImageOptions.Image")));
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(958, 637);
+            this.xtraTabPage2.Text = "Phiếu Thu Nợ";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.labelControl1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(958, 637);
+            this.panel2.TabIndex = 0;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.Location = new System.Drawing.Point(358, 3);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(131, 27);
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "Phiếu Thu Nợ";
+            // 
             // ManageSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,16 +291,17 @@ namespace ManageBook.GUI
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "ManageSheet";
             this.Size = new System.Drawing.Size(966, 687);
+            this.Load += new System.EventHandler(this.ManageSheet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.xtraTabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderBook)).EndInit();
+            this.xtraTabPage2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -319,6 +327,6 @@ namespace ManageBook.GUI
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgOrderBook;
     }
 }

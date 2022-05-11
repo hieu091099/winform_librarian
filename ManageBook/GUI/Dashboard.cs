@@ -72,5 +72,17 @@ namespace ManageBook.GUI
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
+
+        private void accordionControlElement17_Click(object sender, EventArgs e)
+        {
+            Receipt frm = new Receipt();
+            frm.TopLevel = false;
+            frm.AutoScroll = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

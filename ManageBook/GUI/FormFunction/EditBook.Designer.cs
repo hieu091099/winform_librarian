@@ -49,6 +49,7 @@ namespace ManageBook.GUI
             this.txtGiaBan.Name = "txtGiaBan";
             this.txtGiaBan.Size = new System.Drawing.Size(156, 21);
             this.txtGiaBan.TabIndex = 15;
+            this.txtGiaBan.TextChanged += new System.EventHandler(this.txtGiaBan_TextChanged);
             // 
             // cboTheLoai
             // 

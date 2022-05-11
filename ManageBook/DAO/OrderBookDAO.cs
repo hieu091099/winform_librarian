@@ -16,7 +16,8 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM order_book ";
+                string strSql = "SELECT a.id, b.nameBook, b.author, b.kind, a.quantity, a.price, a.supplier, c.fullName,  a.dateOrder, a.dateModify , a.idBook " +
+                    "FROM order_book a LEFT JOIN books b ON a.idBook = b.id LEFT JOIN users c ON a.userId = c.id ";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
@@ -31,7 +32,40 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
-        
+        public DataTable queryOrder(string nameBook, string author, string kind)
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT a.id, b.nameBook, b.author, b.kind, a.quantity, a.price, a.supplier, c.fullName,  a.dateOrder, a.dateModify , a.idBook " +
+                    "FROM order_book a LEFT JOIN books b ON a.idBook = b.id LEFT JOIN users c ON a.userId = c.id WHERE 1=1 ";
+
+                if (nameBook != "")
+                {
+                    strSql += $" AND  b.nameBook LIKE '%{nameBook}%'";
+                }
+                if (author != "")
+                {
+                    strSql += $" AND  b.author LIKE '%{nameBook}%'";
+                }
+                if (kind != "")
+                {
+                    strSql += $" AND  b.kind= '{kind}'";
+                }
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
         public int insert(OrderBookDTO b)
         {
             int nRow = 0;
@@ -39,16 +73,14 @@ namespace ManageBook.DAO
             try
             {
                 string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
-                    "VALUES(@idBook, @quantity, @price, @supplier, @userId, @dateOrder, @dateModify)";
+                    "VALUES(@idBook, @quantity, @price, @supplier, 1, getdate(), getdate())";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
                             new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
                             new SqlParameter { ParameterName = "@price", Value = b.Price },
                             new SqlParameter { ParameterName = "@supplier", Value = b.Supplier },
-                            new SqlParameter { ParameterName = "@userId", Value = b.UserId },
-                            new SqlParameter { ParameterName = "@dateOrder", Value = b.DateOrder },
-                            new SqlParameter { ParameterName = "@dateModify", Value = b.DateModify }
+                            new SqlParameter { ParameterName = "@userId", Value = b.UserId }
                     );
             }
             catch (Exception ex)
@@ -67,18 +99,16 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "UPDATE order_book SET idBook = @idBook, quantity = @quantity, price = @price, supplier = @supplier " +
-                    ", userId = @userId, dateOrder = @dateOrder, dateModify = @dateModify WHERE id = @id";
+                string strSql = "UPDATE order_book SET  quantity = @quantity, price = @price, supplier = @supplier " +
+                    ", userId = 1,  dateModify = getdate() WHERE id = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = b.Id },
-                            new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
                             new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
                             new SqlParameter { ParameterName = "@price", Value = b.Price },
-                            new SqlParameter { ParameterName = "@supplier", Value = b.Supplier },
-                            new SqlParameter { ParameterName = "@userId", Value = b.UserId },
-                            new SqlParameter { ParameterName = "@dateOrder", Value = b.DateOrder },
-                            new SqlParameter { ParameterName = "@dateModify", Value = b.DateModify }
+                            new SqlParameter { ParameterName = "@supplier", Value = b.Supplier }
+                            
+                            
                     );
             }
             catch (Exception ex)

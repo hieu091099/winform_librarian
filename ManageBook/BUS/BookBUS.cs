@@ -22,6 +22,18 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
+        public DataTable queryBook(string nameBook, string author, string kind, double price)
+        {
+            try
+            {
+                BookDAO b = new BookDAO();
+                return b.queryBook(nameBook, author, kind, price);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int insertBook(BookDTO b)
         {
             try

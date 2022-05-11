@@ -59,5 +59,10 @@ namespace ManageBook.GUI
                 MessageBox.Show("Cập nhật thất bại !", ex.Message);
             }
         }
+
+        private void txtGiaBan_TextChanged(object sender, EventArgs e)
+        {
+            this.txtGiaBan.Text = string.Format("{0:#,##0}", (Convert.ToDouble(this.txtGiaBan.Text)));
+        }
     }
 }

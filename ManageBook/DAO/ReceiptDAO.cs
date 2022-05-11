@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 
 namespace ManageBook.DAO
 {
-    public class BookDAO
+    public class ReceiptDAO
     {
-        public DataTable getAllBooks()
+        public DataTable getAllReceipt()
         {
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM books";
+                string strSql = "SELECT a.id, b.fullName, a.[status], a.payCus, c.fullName, a.dateReceipt FROM receipt a LEFT JOIN customers b ON a.idCus = b.id LEFT JOIN users c ON a.userId = c.id";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -30,12 +31,12 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
-        public DataTable queryBook(string nameBook, string author, string kind, double price)
+        public DataTable queryReceipt(string nameBook, string author, string kind, double price)
         {
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM books WHERE 1=1 ";
+                string strSql = "SELECT * FROM receipt WHERE 1=1 ";
 
                 if (nameBook != "")
                 {
@@ -49,7 +50,7 @@ namespace ManageBook.DAO
                 {
                     strSql += $" AND  kind= '{kind}'";
                 }
-                if(price != 0)
+                if (price != 0)
                 {
                     strSql += $" AND  price= '{price}'";
 
@@ -69,46 +70,19 @@ namespace ManageBook.DAO
             }
         }
 
-        public int insertBook(BookDTO b)
+        public int insertReceipt(ReceiptDTO b)
         {
             int nRow = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "INSERT INTO books (nameBook, kind, author, price) VALUES(@nameBook, @kind, @author, @price)";
+                string strSql = "INSERT INTO receipt ( idCus, status, payCus, userId, dateReceipt) " +
+                                                "VALUES(@idCus, @status, @payCus, 1, getdate())";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@nameBook", Value = b.NameBook },
-                            new SqlParameter { ParameterName = "@kind", Value = b.Kind },
-                            new SqlParameter { ParameterName = "@author", Value = b.Author },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price }
-                    );
-
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                provider.DisConnect();
-            }
-            return nRow;
-        }
-        public int editBook(BookDTO b)
-        {
-            int nRow = 0;
-            Provider provider = new Provider();
-            try
-            {
-                string strSql = "UPDATE books SET nameBook = @nameBook, kind = @kind, author = @author, price = @price WHERE id = @id";
-                provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@id", Value = b.Id },
-                            new SqlParameter { ParameterName = "@nameBook", Value = b.NameBook },
-                            new SqlParameter { ParameterName = "@kind", Value = b.Kind },
-                            new SqlParameter { ParameterName = "@author", Value = b.Author },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price }
+                            new SqlParameter { ParameterName = "@idCus", Value = b.IdCus },
+                            new SqlParameter { ParameterName = "@status", Value = b.Status },
+                            new SqlParameter { ParameterName = "@payCus", Value = b.PayCus }
                     );
 
             }
@@ -122,13 +96,37 @@ namespace ManageBook.DAO
             }
             return nRow;
         }
-        public int removeBook(int id)
+        public int editReceipt(ReceiptDTO b)
         {
             int nRow = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "DELETE FROM books WHERE id = @id";
+                string strSql = "UPDATE receipt SET status = @status WHERE id = @id";
+                provider.Connect();
+                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                            new SqlParameter { ParameterName = "@id", Value = b.Id },
+                            new SqlParameter { ParameterName = "@status", Value = b.Status } 
+                    );
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+            return nRow;
+        }
+        public int removeReceipt(int id)
+        {
+            int nRow = 0;
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "DELETE FROM receipt WHERE id = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = id }

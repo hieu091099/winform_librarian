@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using ManageBook.BUS;
+using ManageBook.DAO;
 using ManageBook.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,15 @@ namespace ManageBook.GUI
 {
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
+       
+        Common c = new Common();
+        
         public LoginForm()
         {
             InitializeComponent();
         }
+
+       
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -39,9 +45,11 @@ namespace ManageBook.GUI
                 if (bus.Login(user.Username, user.Password) == 1)
                 {
                     Dashboard db = new Dashboard();
-                    this.Hide();
+                   // c._userId = txtUsername.Text;
                     db.StartPosition = FormStartPosition.CenterScreen;
                     db.Show();
+                    this.Hide();
+                    
                 }
                 else
                 {

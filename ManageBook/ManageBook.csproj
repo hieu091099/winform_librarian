@@ -86,15 +86,21 @@
     <Compile Include="BUS\BookBUS.cs" />
     <Compile Include="BUS\CustomerBUS.cs" />
     <Compile Include="BUS\OrderBookBUS.cs" />
+    <Compile Include="BUS\ReceiptBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="DAO\BookDAO.cs" />
+    <Compile Include="DAO\Common.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\OrderBookDAO.cs" />
     <Compile Include="DAO\Provider.cs" />
+    <Compile Include="DAO\ReceiptDAO.cs" />
+    <Compile Include="DAO\ReceiptDetailDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
     <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\OrderBookDTO.cs" />
+    <Compile Include="DTO\ReceiptDTO.cs" />
+    <Compile Include="DTO\ReceiptDetailDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="GUI\CustomerForm.cs">
       <SubType>Form</SubType>
@@ -119,6 +125,12 @@
     </Compile>
     <Compile Include="GUI\FormFunction\EditCustomer.Designer.cs">
       <DependentUpon>EditCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormFunction\FormReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormFunction\FormReceipt.Designer.cs">
+      <DependentUpon>FormReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormFunction\NewOrderBook.cs">
       <SubType>Form</SubType>
@@ -145,6 +157,12 @@
     <Compile Include="GUI\ManageBook.Designer.cs">
       <DependentUpon>ManageBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Receipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Receipt.Designer.cs">
+      <DependentUpon>Receipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
@@ -158,6 +176,9 @@
     <EmbeddedResource Include="GUI\FormFunction\EditCustomer.resx">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormFunction\FormReceipt.resx">
+      <DependentUpon>FormReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormFunction\NewOrderBook.resx">
       <DependentUpon>NewOrderBook.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ManageSheet.resx">
       <DependentUpon>ManageSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Receipt.resx">
+      <DependentUpon>Receipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

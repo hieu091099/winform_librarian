@@ -193,6 +193,63 @@ namespace ManageBook.GUI
         {
 
         }
+
+        private void txtGiaBan_TextChanged(object sender, EventArgs e)
+        {
+            //this.txtGiaBan.Text = string.Format("{0:#,##0}", (Convert.ToDouble(this.txtGiaBan.Text)));
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var nameBook = txtTenSach.Text;
+                var author = txtTacGia.Text;
+                double price =  0;
+                var kind = "";
+                if (cboTheLoai.SelectedIndex != -1)
+                {
+                    kind = cboTheLoai.SelectedItem.ToString();
+                }
+                if(txtGiaBan.Text != "")
+                {
+                    price = double.Parse(txtGiaBan.Text);
+                }
+                BookBUS bus = new BookBUS();
+                DataTable dt = bus.queryBook(nameBook, author, kind, price);
+
+                dgBooks.DataSource = dt;
+                dgBooks.Columns[0].HeaderText = "ID";
+                dgBooks.Columns[1].HeaderText = "Tên Sách";
+                dgBooks.Columns[2].HeaderText = "Hình Ảnh";
+                dgBooks.Columns[3].HeaderText = "Thể Loại";
+                dgBooks.Columns[4].HeaderText = "Tác Giả";
+                dgBooks.Columns[5].HeaderText = "Giá";
+
+                dgBooks.Columns[0].Width = 40;
+                dgBooks.Columns[1].Width = 300;
+                dgBooks.Columns[2].Width = 80;
+                dgBooks.Columns[3].Width = 80;
+                dgBooks.Columns[4].Width = 250;
+                dgBooks.Columns[5].Width = 100;
+
+                if (dt.Rows.Count > 0)
+                {
+                    dgBooks.Rows[0].Selected = true;
+                    RowSelected = new BookDTO();
+                    RowSelected.Id = Int32.Parse(dgBooks.SelectedRows[0].Cells["id"].Value.ToString());
+                    RowSelected.NameBook = dgBooks.SelectedRows[0].Cells["nameBook"].Value.ToString();
+                    RowSelected.Price = double.Parse(dgBooks.SelectedRows[0].Cells["price"].Value.ToString());
+                    RowSelected.Kind = dgBooks.SelectedRows[0].Cells["kind"].Value.ToString();
+                    RowSelected.Author = dgBooks.SelectedRows[0].Cells["author"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
 
