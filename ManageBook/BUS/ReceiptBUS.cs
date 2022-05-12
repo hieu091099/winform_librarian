@@ -23,6 +23,18 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
+        public DataTable queryReceipt(string khachHang, string trangThai, string dateFrom, string dateTo)
+        {
+            try
+            {
+                ReceiptDAO b = new ReceiptDAO();
+                return b.queryReceipt(khachHang, trangThai, dateFrom, dateTo);
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int insertReceipt(ReceiptDTO b)
         {
             try

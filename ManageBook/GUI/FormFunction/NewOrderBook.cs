@@ -21,6 +21,7 @@ namespace ManageBook.GUI.FormFunction
         int selectedBookId;
         string _typeForm;
         OrderBookDTO _book;
+        ManageSheet form;
 
         public string TypeForm { get => _typeForm; set => _typeForm = value; }
         public OrderBookDTO Book { get => _book; set => _book = value; }
@@ -30,10 +31,10 @@ namespace ManageBook.GUI.FormFunction
 
         //public Common C { get => _c; set => _c = value; }
 
-        public NewOrderBook()
+        public NewOrderBook( ManageSheet f)
         {
             InitializeComponent();
-            
+            form = f;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -148,7 +149,8 @@ namespace ManageBook.GUI.FormFunction
                     if (bus.insert(b) == 1)
                     {
                         MessageBox.Show("Thêm thành công!");
-                        this.Close();
+                        form.LoadData();
+                        //this.Close();
                     }
                 }
                 else

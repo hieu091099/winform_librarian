@@ -11,16 +11,21 @@ namespace ManageBook.DAO
 {
     public class ReceiptDetailDAO
     {
-        public DataTable getReceipt(int id)
+        public DataTable getReceiptDetail(int id)
         {
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT * FROM receipt_detail WHERE idReceipt = @idReceipt";
+                string strSql = "SELECT CONVERT(VARCHAR,a.id) id, b.nameBook,  a.quantity, a.price , a.price * a.quantity 'Total', a.idBook " +
+                    "FROM receipt_detail a LEFT JOIN books b ON a.idBook = b.id " +
+                    "WHERE a.idReceipt = @idReceipt " +
+                    "UNION ALL " +
+                    "SELECT 'Total' id, '' nameBook,  SUM(a.quantity) quantity,  0 price , SUM(a.price * a.quantity) Total, '' idBook " +
+                    "FROM receipt_detail a " +
+                    "WHERE a.idReceipt = @idReceipt";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql, new SqlParameter { ParameterName = "@idReceipt", Value = id});
                 return dt;
-
             }
             catch (Exception ex)
             {

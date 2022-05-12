@@ -68,19 +68,28 @@ namespace ManageBook.DAO
         }
         public int insert(OrderBookDTO b)
         {
-            int nRow = 0;
+            int idInsert = 0;
+            int nRowWareHouse = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
-                    "VALUES(@idBook, @quantity, @price, @supplier, 1, getdate(), getdate())";
                 provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
+                    "VALUES(@idBook, @quantity, @price, @supplier, 1, getdate(), getdate()); SELECT SCOPE_IDENTITY();";
+                string insertWareHouse = "INSERT INTO warehouse (idBook, totalQuantity, sold, idOrder, dateImport) VALUES (@idBook, @quantity, 0, @id, getdate())";
+                idInsert = provider.ExecuteScalar(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
                             new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
                             new SqlParameter { ParameterName = "@price", Value = b.Price },
                             new SqlParameter { ParameterName = "@supplier", Value = b.Supplier },
                             new SqlParameter { ParameterName = "@userId", Value = b.UserId }
+                    );
+                
+                nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, insertWareHouse,
+                            new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
+                            new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
+                            new SqlParameter { ParameterName = "@id", Value = idInsert }
+
                     );
             }
             catch (Exception ex)
@@ -91,16 +100,18 @@ namespace ManageBook.DAO
             {
                 provider.DisConnect();
             }
-            return nRow;
+            return nRowWareHouse;
         }
         public int edit(OrderBookDTO b)
         {
             int nRow = 0;
+            int nRowWareHouse = 0;
             Provider provider = new Provider();
             try
             {
                 string strSql = "UPDATE order_book SET  quantity = @quantity, price = @price, supplier = @supplier " +
                     ", userId = 1,  dateModify = getdate() WHERE id = @id";
+                string updateWareHouse = "UPDATE warehouse SET totalQuantity = @quantity WHERE idOrder = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = b.Id },
@@ -110,6 +121,10 @@ namespace ManageBook.DAO
                             
                             
                     );
+                nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, updateWareHouse,
+                           new SqlParameter { ParameterName = "@id", Value = b.Id },
+                           new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
+                   );
             }
             catch (Exception ex)
             {

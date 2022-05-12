@@ -16,7 +16,45 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT a.id, b.fullName, a.[status], a.payCus, c.fullName, a.dateReceipt FROM receipt a LEFT JOIN customers b ON a.idCus = b.id LEFT JOIN users c ON a.userId = c.id";
+                string strSql = "SELECT a.id, b.fullName, a.[status], case when a.status = N'Hoàn Tất' then 0 else a.payCus end payCus, c.fullName, a.dateReceipt, a.idCus " +
+                    "FROM receipt a " +
+                    "LEFT JOIN customers b ON a.idCus = b.id " +
+                    "LEFT JOIN users c ON a.userId = c.id";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
+        public DataTable queryReceipt(string khachHang, string trangThai, string dateFrom, string dateTo)
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT a.id, b.fullName, a.[status], case when a.status = N'Hoàn Tất' then 0 else a.payCus end payCus, c.fullName, a.dateReceipt, a.idCus " +
+                    "FROM receipt a " +
+                    "LEFT JOIN customers b ON a.idCus = b.id " +
+                    "LEFT JOIN users c ON a.userId = c.id WHERE 1=1 ";
+                if(khachHang != "")
+                {
+                    strSql += $" AND b.fullName like N'%{khachHang}%'";
+                }
+                if (trangThai != "")
+                {
+                    strSql += $" AND a.status = {trangThai}";
+                }
+                if (dateFrom != "" && dateTo != "")
+                {
+                    strSql += $" AND a.dateReceipt BETWEEN '{dateFrom}' AND '{dateTo}'";
+                }
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
@@ -102,11 +140,13 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "UPDATE receipt SET status = @status WHERE id = @id";
+                string strSql = "UPDATE receipt SET status = @status, payCus = @payCus WHERE id = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = b.Id },
-                            new SqlParameter { ParameterName = "@status", Value = b.Status } 
+                            new SqlParameter { ParameterName = "@status", Value = b.Status } ,
+                            new SqlParameter { ParameterName = "@payCus", Value = b.PayCus }
+
                     );
 
             }
@@ -123,15 +163,24 @@ namespace ManageBook.DAO
         public int removeReceipt(int id)
         {
             int nRow = 0;
+            int nRowDetail = 0;
             Provider provider = new Provider();
             try
             {
-                string strSql = "DELETE FROM receipt WHERE id = @id";
                 provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                string strSqlDetail = "DELETE FROM receipt_detail WHERE idReceipt = @id";
+                nRowDetail = provider.ExecuteNonQuery(CommandType.Text, strSqlDetail,
                             new SqlParameter { ParameterName = "@id", Value = id }
 
                     );
+                if(nRowDetail == 1)
+                {
+                    string strSql = "DELETE FROM receipt WHERE id = @id";
+                    nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                                new SqlParameter { ParameterName = "@id", Value = id }
+
+                        );
+                }
             }
             catch (Exception ex)
             {

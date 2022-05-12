@@ -470,3 +470,4 @@ C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\Manag
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.Receipt.resources
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.FormFunction.FormReceipt.resources
+C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.FormFunction.FormReceiptDetail.resources

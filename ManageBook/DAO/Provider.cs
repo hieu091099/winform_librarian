@@ -53,6 +53,31 @@ namespace ManageBook.DAO
                 throw ex;
             }
         }
+        public int ExecuteScalar(CommandType cmtType, string strSql,
+                            params SqlParameter[] parameters)
+        {
+            int returnId = -1;
+            try
+            {
+                SqlCommand command = Connection.CreateCommand();
+                command.CommandText = strSql;
+                command.CommandType = cmtType;
+                if (parameters != null && parameters.Length > 0)
+                    command.Parameters.AddRange(parameters);
+                object returnObj = command.ExecuteScalar();
+
+                if (returnObj != null)
+                {
+                    int.TryParse(returnObj.ToString(), out returnId);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return returnId;
+        }
 
         public DataTable Select(CommandType cmtType, string strSql,
                             params SqlParameter[] parameters)

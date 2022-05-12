@@ -24,7 +24,7 @@ namespace ManageBook.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            NewOrderBook formEdit = new NewOrderBook();
+            NewOrderBook formEdit = new NewOrderBook(this);
             formEdit.TypeForm = "insert";
             formEdit.StartPosition = FormStartPosition.CenterScreen;
             formEdit.ShowDialog();
@@ -98,7 +98,7 @@ namespace ManageBook.GUI
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            NewOrderBook formEdit = new NewOrderBook();
+            NewOrderBook formEdit = new NewOrderBook(this);
             formEdit.TypeForm = "edit";
             formEdit.Book = RowSelected;
             formEdit.StartPosition = FormStartPosition.CenterScreen;

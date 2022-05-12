@@ -17,12 +17,14 @@ namespace ManageBook.GUI.FormFunction
     {
         private string _typeForm;
         public int seletedCus;
+        ReceiptDTO _receipt;
         public FormReceipt()
         {
             InitializeComponent();
         }
 
         public string TypeForm { get => _typeForm; set => _typeForm = value; }
+        public ReceiptDTO Receipt { get => _receipt; set => _receipt = value; }
 
         private void FormReceipt_Load(object sender, EventArgs e)
         {
@@ -44,6 +46,18 @@ namespace ManageBook.GUI.FormFunction
             luKhachHang.Properties.Columns[1].Caption = "Họ Tên";
             luKhachHang.Properties.Columns[0].Width = 30;
             luKhachHang.Properties.Columns[1].Width = 200;
+
+            if(TypeForm == "edit")
+            {
+                lbTitle.Text = "Chỉnh Sửa Hóa Đơn";
+                lbTitle.Left = 100;
+                luKhachHang.EditValue = Receipt.IdCus;
+                luKhachHang.Properties.ReadOnly = true;
+                cboTrangThai.SelectedItem = Receipt.Status;
+                txtPayCus.Text = Receipt.PayCus.ToString();
+                txtPayCus.Text = string.Format("{0:#,##0}", ((double)Int32.Parse(txtPayCus.Text)));
+
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -71,6 +85,23 @@ namespace ManageBook.GUI.FormFunction
                         MessageBox.Show("Thêm thành công!");
                         this.Close();
                     }
+                }else if( TypeForm == "edit")
+                {
+                    ReceiptDTO b = new ReceiptDTO();
+                    b.Id = Receipt.Id;
+                    b.IdCus = seletedCus;
+                    b.Status = cboTrangThai.SelectedItem.ToString();
+                    if (txtPayCus.Text != "")
+                    {
+                        b.PayCus = Convert.ToDouble(txtPayCus.Text);
+                    }
+
+                    ReceiptBUS bus = new ReceiptBUS();
+                    if (bus.editReceipt(b) == 1)
+                    {
+                        MessageBox.Show("Cập nhật thành công!");
+                        this.Close();
+                    }
                 }
 
             }
@@ -96,9 +127,43 @@ namespace ManageBook.GUI.FormFunction
 
         private void cboTrangThai_TextChanged(object sender, EventArgs e)
         {
-            if(cboTrangThai.SelectedItem == "Hoàn Tất")
+            if(cboTrangThai.SelectedItem.ToString() == "Hoàn Tất")
             {
                 txtPayCus.ReadOnly = true;
+            }
+            else
+            {
+                txtPayCus.ReadOnly = false;
+
+            }
+        }
+
+        private void txtPayCus_TextChanged(object sender, EventArgs e)
+        {
+            //if (this.txtPayCus.Text != "")
+            //{
+            //    this.txtPayCus.Text = string.Format("{0:#,##0}", ((double)Int32.Parse(this.txtPayCus.Text)));
+            //}
+        }
+
+        private void cboTrangThai_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void txtPayCus_KeyUp(object sender, KeyEventArgs e)
+        {
+            //if (this.txtPayCus.Text != "")
+            //{
+            //    this.txtPayCus.Text = string.Format("{0:#,##0}", ((double)Int32.Parse(this.txtPayCus.Text)));
+            //}
+        }
+
+        private void txtPayCus_Enter(object sender, EventArgs e)
+        {
+            if (this.txtPayCus.Text != "")
+            {
+                this.txtPayCus.Text = string.Format("{0:#,##0}", ((double)Int32.Parse(this.txtPayCus.Text)));
             }
         }
     }

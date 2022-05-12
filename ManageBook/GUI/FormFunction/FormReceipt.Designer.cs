@@ -34,7 +34,7 @@ namespace ManageBook.GUI.FormFunction
             this.txtPayCus = new System.Windows.Forms.TextBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.luKhachHang = new DevExpress.XtraEditors.LookUpEdit();
@@ -56,6 +56,9 @@ namespace ManageBook.GUI.FormFunction
             this.txtPayCus.Name = "txtPayCus";
             this.txtPayCus.Size = new System.Drawing.Size(216, 21);
             this.txtPayCus.TabIndex = 49;
+            this.txtPayCus.TextChanged += new System.EventHandler(this.txtPayCus_TextChanged);
+            this.txtPayCus.Enter += new System.EventHandler(this.txtPayCus_Enter);
+            this.txtPayCus.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPayCus_KeyUp);
             // 
             // labelControl2
             // 
@@ -73,16 +76,16 @@ namespace ManageBook.GUI.FormFunction
             this.labelControl1.TabIndex = 45;
             this.labelControl1.Text = "Khách Hàng:";
             // 
-            // label1
+            // lbTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(123, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 27);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Tạo Hóa Đơn";
+            this.lbTitle.AutoSize = true;
+            this.lbTitle.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+            this.lbTitle.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lbTitle.Location = new System.Drawing.Point(123, 26);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(153, 27);
+            this.lbTitle.TabIndex = 44;
+            this.lbTitle.Text = "Tạo Hóa Đơn";
             // 
             // simpleButton2
             // 
@@ -126,6 +129,7 @@ namespace ManageBook.GUI.FormFunction
             this.cboTrangThai.Size = new System.Drawing.Size(216, 21);
             this.cboTrangThai.TabIndex = 58;
             this.cboTrangThai.TextChanged += new System.EventHandler(this.cboTrangThai_TextChanged);
+            this.cboTrangThai.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboTrangThai_KeyUp);
             // 
             // FormReceipt
             // 
@@ -138,7 +142,7 @@ namespace ManageBook.GUI.FormFunction
             this.Controls.Add(this.txtPayCus);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Name = "FormReceipt";
@@ -155,7 +159,7 @@ namespace ManageBook.GUI.FormFunction
         private System.Windows.Forms.TextBox txtPayCus;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbTitle;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LookUpEdit luKhachHang;

@@ -238,9 +238,6 @@ namespace ManageBook.GUI
                 dgCustomers.DataSource = dt;
                
 
-
-
-
             }
             catch (Exception ex)
             {
