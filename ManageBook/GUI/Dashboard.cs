@@ -84,5 +84,26 @@ namespace ManageBook.GUI
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
+
+        private void accordionControlElement11_Click(object sender, EventArgs e)
+        {
+            WareHouse frm = new WareHouse();
+            frm.TopLevel = false;
+            frm.AutoScroll = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void accordionControlElement19_Click(object sender, EventArgs e)
+        {
+            Report frm = new Report();
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

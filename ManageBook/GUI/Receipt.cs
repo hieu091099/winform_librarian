@@ -205,14 +205,18 @@ namespace ManageBook.GUI
 
         private void dgReceipt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgReceipt.Rows[index];
-            RowSelected = new ReceiptDTO();
-            RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelected.IdCus = Int32.Parse(row.Cells["idCus"].Value.ToString());
-            RowSelected.PayCus = double.Parse(row.Cells["payCus"].Value.ToString());
-            RowSelected.Status = row.Cells["status"].Value.ToString();
-            LoadDataDetail();
+            if (e.RowIndex >= 0)
+
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgReceipt.Rows[index];
+                RowSelected = new ReceiptDTO();
+                RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelected.IdCus = Int32.Parse(row.Cells["idCus"].Value.ToString());
+                RowSelected.PayCus = double.Parse(row.Cells["payCus"].Value.ToString());
+                RowSelected.Status = row.Cells["status"].Value.ToString();
+                LoadDataDetail();
+            }
         }
 
         private void simpleButton6_Click(object sender, EventArgs e)
@@ -237,13 +241,17 @@ namespace ManageBook.GUI
 
         private void dgReceiptDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgReceiptDetail.Rows[index];
-            RowSelectedDetail = new ReceiptDetailDTO();
-            RowSelectedDetail.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelectedDetail.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
-            RowSelectedDetail.Price = double.Parse(row.Cells["price"].Value.ToString());
-            RowSelectedDetail.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
+            if (e.RowIndex >= 0)
+
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgReceiptDetail.Rows[index];
+                RowSelectedDetail = new ReceiptDetailDTO();
+                RowSelectedDetail.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelectedDetail.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
+                RowSelectedDetail.Price = double.Parse(row.Cells["price"].Value.ToString());
+                RowSelectedDetail.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
+            }
 
             
         }

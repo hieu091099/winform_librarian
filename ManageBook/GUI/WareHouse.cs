@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using ManageBook.BUS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,67 @@ namespace ManageBook.GUI
         public WareHouse()
         {
             InitializeComponent();
+        }
+
+        private void WareHouse_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        private void LoadData()
+        {
+            try
+            {
+                WareHouseBUS b = new WareHouseBUS();
+                DataTable dt = b.getAll();
+                dgWarehouse.DataSource = dt;
+                dgWarehouse.Columns[0].HeaderText = "ID";
+                dgWarehouse.Columns[1].HeaderText = "Tên Sách";
+                dgWarehouse.Columns[2].HeaderText = "Tác Giả";
+                dgWarehouse.Columns[3].HeaderText = "Giá";
+                dgWarehouse.Columns[4].HeaderText = "Tổng Số Lượng";
+                dgWarehouse.Columns[5].HeaderText = "Đã Bán";
+                dgWarehouse.Columns[6].HeaderText = "Tồn Kho";
+                dgWarehouse.Columns[7].HeaderText = "Ngày Nhập";
+              
+                dgWarehouse.Columns["price"].DefaultCellStyle.Format = "N2";
+
+
+                dgWarehouse.Columns[0].Width = 30;
+                dgWarehouse.Columns[1].Width = 300;
+                dgWarehouse.Columns[2].Width = 120;
+                dgWarehouse.Columns[3].Width = 90;
+                dgWarehouse.Columns[4].Width = 60;
+                dgWarehouse.Columns[5].Width = 60;
+                dgWarehouse.Columns[6].Width = 60;
+                dgWarehouse.Columns[7].Width = 120;
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var tenSach = txtTenSach.Text;
+            var tacGia = txtTacGia.Text;
+            var tuNgay = "";
+            var denNgay = "";
+            if (deTuNgay.EditValue != null)
+            {
+                tuNgay = deTuNgay.EditValue.ToString();
+            }
+            if (deDenNgay.EditValue != null)
+            {
+                denNgay = deDenNgay.EditValue.ToString();
+            }
+
+            WareHouseBUS bus = new WareHouseBUS();
+            DataTable dt = bus.query(tenSach, tacGia, tuNgay, denNgay);
+            //dgCustomers.DataSource = dt;
+            dgWarehouse.DataSource = dt;
         }
     }
 }

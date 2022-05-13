@@ -144,32 +144,36 @@ namespace ManageBook.GUI
 
         private void dgCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgCustomers.Rows[index];
-            RowSelected = new CustomerDTO();
-            RowSelected = new CustomerDTO();
-            RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelected.FullName = row.Cells["fullname"].Value.ToString();
-            RowSelected.Address = row.Cells["address"].Value.ToString();
-            RowSelected.Birthday = Convert.ToDateTime(row.Cells["birthday"].Value);
-            RowSelected.Gender = Convert.ToBoolean(row.Cells["gender"].Value);
-            RowSelected.Phone = row.Cells["phone"].Value.ToString();
-            RowSelected.Email = row.Cells["email"].Value.ToString();
+            if (e.RowIndex >= 0)
 
-
-            txtHoTen.Text = RowSelected.FullName;
-            txtEmail.Text = RowSelected.Email;
-            txtSDT.Text = RowSelected.Phone.ToString();
-            deNgaySinh.EditValue = RowSelected.Birthday;
-            rtDiaChi.Text = RowSelected.Address;
-            if (RowSelected.Gender == false)
             {
-                cboGioiTinh.SelectedIndex = 1;
-            }
-            else
-            {
-                cboGioiTinh.SelectedIndex = 0;
+                int index = e.RowIndex;
+                DataGridViewRow row = dgCustomers.Rows[index];
+                RowSelected = new CustomerDTO();
+                RowSelected = new CustomerDTO();
+                RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelected.FullName = row.Cells["fullname"].Value.ToString();
+                RowSelected.Address = row.Cells["address"].Value.ToString();
+                RowSelected.Birthday = Convert.ToDateTime(row.Cells["birthday"].Value);
+                RowSelected.Gender = Convert.ToBoolean(row.Cells["gender"].Value);
+                RowSelected.Phone = row.Cells["phone"].Value.ToString();
+                RowSelected.Email = row.Cells["email"].Value.ToString();
 
+
+                txtHoTen.Text = RowSelected.FullName;
+                txtEmail.Text = RowSelected.Email;
+                txtSDT.Text = RowSelected.Phone.ToString();
+                deNgaySinh.EditValue = RowSelected.Birthday;
+                rtDiaChi.Text = RowSelected.Address;
+                if (RowSelected.Gender == false)
+                {
+                    cboGioiTinh.SelectedIndex = 1;
+                }
+                else
+                {
+                    cboGioiTinh.SelectedIndex = 0;
+
+                }
             }
         }
 

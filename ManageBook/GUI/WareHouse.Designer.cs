@@ -32,17 +32,21 @@ namespace ManageBook.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WareHouse));
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
-            this.txtGiaBan = new System.Windows.Forms.TextBox();
-            this.cboTheLoai = new System.Windows.Forms.ComboBox();
             this.txtTacGia = new System.Windows.Forms.TextBox();
             this.txtTenSach = new System.Windows.Forms.TextBox();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.deDenNgay = new DevExpress.XtraEditors.DateEdit();
+            this.deTuNgay = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.dgWarehouse = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deDenNgay.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDenNgay.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTuNgay.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTuNgay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgWarehouse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,41 +65,16 @@ namespace ManageBook.GUI
             // btnSearch
             // 
             this.btnSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSearch.ImageOptions.SvgImage")));
-            this.btnSearch.Location = new System.Drawing.Point(486, 30);
+            this.btnSearch.Location = new System.Drawing.Point(464, 37);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 40);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
-            // 
-            // txtGiaBan
-            // 
-            this.txtGiaBan.Location = new System.Drawing.Point(335, 61);
-            this.txtGiaBan.Name = "txtGiaBan";
-            this.txtGiaBan.Size = new System.Drawing.Size(121, 21);
-            this.txtGiaBan.TabIndex = 7;
-            // 
-            // cboTheLoai
-            // 
-            this.cboTheLoai.FormattingEnabled = true;
-            this.cboTheLoai.Items.AddRange(new object[] {
-            "Science Fiction",
-            "Kinh Dị",
-            "Trinh Thám",
-            "Thiếu Nhi",
-            "Kinh Tế",
-            "Đời Sống",
-            "Chính Trị",
-            "Xã Hội",
-            "Phụ Nữ",
-            "Làm Đẹp"});
-            this.cboTheLoai.Location = new System.Drawing.Point(335, 30);
-            this.cboTheLoai.Name = "cboTheLoai";
-            this.cboTheLoai.Size = new System.Drawing.Size(121, 21);
-            this.cboTheLoai.TabIndex = 6;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtTacGia
             // 
-            this.txtTacGia.Location = new System.Drawing.Point(93, 57);
+            this.txtTacGia.Location = new System.Drawing.Point(93, 64);
             this.txtTacGia.Name = "txtTacGia";
             this.txtTacGia.Size = new System.Drawing.Size(154, 21);
             this.txtTacGia.TabIndex = 5;
@@ -109,23 +88,15 @@ namespace ManageBook.GUI
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(272, 64);
+            this.labelControl4.Location = new System.Drawing.Point(260, 64);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(40, 13);
+            this.labelControl4.Size = new System.Drawing.Size(52, 13);
             this.labelControl4.TabIndex = 3;
-            this.labelControl4.Text = "Giá Bán:";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(272, 33);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(44, 13);
-            this.labelControl3.TabIndex = 2;
-            this.labelControl3.Text = "Thể Loại:";
+            this.labelControl4.Text = "Đến Ngày:";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(24, 64);
+            this.labelControl2.Location = new System.Drawing.Point(33, 67);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(39, 13);
             this.labelControl2.TabIndex = 1;
@@ -141,13 +112,13 @@ namespace ManageBook.GUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.deDenNgay);
+            this.groupBox1.Controls.Add(this.deTuNgay);
+            this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.txtGiaBan);
-            this.groupBox1.Controls.Add(this.cboTheLoai);
             this.groupBox1.Controls.Add(this.txtTacGia);
             this.groupBox1.Controls.Add(this.txtTenSach);
             this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Location = new System.Drawing.Point(3, 37);
@@ -156,6 +127,38 @@ namespace ManageBook.GUI
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
+            // 
+            // deDenNgay
+            // 
+            this.deDenNgay.EditValue = null;
+            this.deDenNgay.Location = new System.Drawing.Point(326, 64);
+            this.deDenNgay.Name = "deDenNgay";
+            this.deDenNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDenNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDenNgay.Size = new System.Drawing.Size(113, 20);
+            this.deDenNgay.TabIndex = 10;
+            // 
+            // deTuNgay
+            // 
+            this.deTuNgay.EditValue = null;
+            this.deTuNgay.Location = new System.Drawing.Point(326, 31);
+            this.deTuNgay.Name = "deTuNgay";
+            this.deTuNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTuNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTuNgay.Size = new System.Drawing.Size(113, 20);
+            this.deTuNgay.TabIndex = 9;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(260, 33);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(45, 13);
+            this.labelControl3.TabIndex = 8;
+            this.labelControl3.Text = "Từ Ngày:";
             // 
             // dgWarehouse
             // 
@@ -167,6 +170,8 @@ namespace ManageBook.GUI
             // 
             // WareHouse
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 655);
@@ -175,8 +180,13 @@ namespace ManageBook.GUI
             this.Controls.Add(this.dgWarehouse);
             this.Name = "WareHouse";
             this.Text = "WareHouse";
+            this.Load += new System.EventHandler(this.WareHouse_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deDenNgay.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDenNgay.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTuNgay.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTuNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgWarehouse)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -187,15 +197,15 @@ namespace ManageBook.GUI
 
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
-        private System.Windows.Forms.TextBox txtGiaBan;
-        private System.Windows.Forms.ComboBox cboTheLoai;
         private System.Windows.Forms.TextBox txtTacGia;
         private System.Windows.Forms.TextBox txtTenSach;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgWarehouse;
+        private DevExpress.XtraEditors.DateEdit deDenNgay;
+        private DevExpress.XtraEditors.DateEdit deTuNgay;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

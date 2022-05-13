@@ -33,6 +33,14 @@ namespace ManageBook.GUI
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.deTo = new DevExpress.XtraEditors.DateEdit();
+            this.deFrom = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.cboTrangThai = new System.Windows.Forms.ComboBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.luKhach = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgReceipt = new System.Windows.Forms.DataGridView();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -43,24 +51,16 @@ namespace ManageBook.GUI
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.luKhach = new DevExpress.XtraEditors.LookUpEdit();
-            this.cboTrangThai = new System.Windows.Forms.ComboBox();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.deFrom = new DevExpress.XtraEditors.DateEdit();
-            this.deTo = new DevExpress.XtraEditors.DateEdit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.luKhach.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceiptDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luKhach.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl7
@@ -102,6 +102,83 @@ namespace ManageBook.GUI
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin";
+            // 
+            // deTo
+            // 
+            this.deTo.EditValue = null;
+            this.deTo.Location = new System.Drawing.Point(320, 62);
+            this.deTo.Name = "deTo";
+            this.deTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTo.Size = new System.Drawing.Size(154, 20);
+            this.deTo.TabIndex = 63;
+            // 
+            // deFrom
+            // 
+            this.deFrom.EditValue = null;
+            this.deFrom.Location = new System.Drawing.Point(78, 62);
+            this.deFrom.Name = "deFrom";
+            this.deFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deFrom.Size = new System.Drawing.Size(154, 20);
+            this.deFrom.TabIndex = 9;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(281, 65);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(24, 13);
+            this.labelControl3.TabIndex = 62;
+            this.labelControl3.Text = "Đến:";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(9, 65);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(44, 13);
+            this.labelControl2.TabIndex = 61;
+            this.labelControl2.Text = "Từ ngày:";
+            // 
+            // cboTrangThai
+            // 
+            this.cboTrangThai.FormattingEnabled = true;
+            this.cboTrangThai.Items.AddRange(new object[] {
+            "Hoàn Tất",
+            "Trả Trước"});
+            this.cboTrangThai.Location = new System.Drawing.Point(320, 34);
+            this.cboTrangThai.Name = "cboTrangThai";
+            this.cboTrangThai.Size = new System.Drawing.Size(154, 21);
+            this.cboTrangThai.TabIndex = 60;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(250, 38);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(55, 13);
+            this.labelControl6.TabIndex = 59;
+            this.labelControl6.Text = "Trạng Thái:";
+            // 
+            // luKhach
+            // 
+            this.luKhach.Location = new System.Drawing.Point(78, 34);
+            this.luKhach.Name = "luKhach";
+            this.luKhach.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luKhach.Size = new System.Drawing.Size(154, 20);
+            this.luKhach.TabIndex = 8;
+            this.luKhach.EditValueChanged += new System.EventHandler(this.luKhach_EditValueChanged);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(9, 37);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(48, 13);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "Tên Sách:";
             // 
             // groupBox2
             // 
@@ -214,85 +291,10 @@ namespace ManageBook.GUI
             this.simpleButton6.Text = "New";
             this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(9, 37);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(48, 13);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Tên Sách:";
-            // 
-            // luKhach
-            // 
-            this.luKhach.Location = new System.Drawing.Point(78, 34);
-            this.luKhach.Name = "luKhach";
-            this.luKhach.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.luKhach.Size = new System.Drawing.Size(154, 20);
-            this.luKhach.TabIndex = 8;
-            this.luKhach.EditValueChanged += new System.EventHandler(this.luKhach_EditValueChanged);
-            // 
-            // cboTrangThai
-            // 
-            this.cboTrangThai.FormattingEnabled = true;
-            this.cboTrangThai.Items.AddRange(new object[] {
-            "Hoàn Tất",
-            "Trả Trước"});
-            this.cboTrangThai.Location = new System.Drawing.Point(320, 34);
-            this.cboTrangThai.Name = "cboTrangThai";
-            this.cboTrangThai.Size = new System.Drawing.Size(154, 21);
-            this.cboTrangThai.TabIndex = 60;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(250, 38);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(55, 13);
-            this.labelControl6.TabIndex = 59;
-            this.labelControl6.Text = "Trạng Thái:";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(9, 65);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(44, 13);
-            this.labelControl2.TabIndex = 61;
-            this.labelControl2.Text = "Từ ngày:";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(281, 65);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(24, 13);
-            this.labelControl3.TabIndex = 62;
-            this.labelControl3.Text = "Đến:";
-            // 
-            // deFrom
-            // 
-            this.deFrom.EditValue = null;
-            this.deFrom.Location = new System.Drawing.Point(78, 62);
-            this.deFrom.Name = "deFrom";
-            this.deFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deFrom.Size = new System.Drawing.Size(154, 20);
-            this.deFrom.TabIndex = 9;
-            // 
-            // deTo
-            // 
-            this.deTo.EditValue = null;
-            this.deTo.Location = new System.Drawing.Point(320, 62);
-            this.deTo.Name = "deTo";
-            this.deTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deTo.Size = new System.Drawing.Size(154, 20);
-            this.deTo.TabIndex = 63;
-            // 
             // Receipt
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 655);
@@ -305,15 +307,15 @@ namespace ManageBook.GUI
             this.Load += new System.EventHandler(this.Receipt_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.luKhach.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgReceiptDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luKhach.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deFrom.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deTo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

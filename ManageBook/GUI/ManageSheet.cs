@@ -17,6 +17,8 @@ namespace ManageBook.GUI
     public partial class ManageSheet : DevExpress.XtraEditors.XtraUserControl
     {
         OrderBookDTO RowSelected;
+        int idCus;
+        double debt;
         public ManageSheet()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace ManageBook.GUI
                 dgOrderBook.Columns[9].HeaderText = "Ngày Cập Nhật";
                 dgOrderBook.Columns[10].HeaderText = "IDBook";
                 dgOrderBook.Columns["idBook"].Visible = false;
+                dgOrderBook.Columns["price"].DefaultCellStyle.Format = "N2";
 
 
 
@@ -83,6 +86,68 @@ namespace ManageBook.GUI
                 throw ex;
             }
         }
+        public void LoadDataOwn()
+        {
+            CustomerBUS b = new CustomerBUS();
+            DataTable dt = b.getOwn();
+            dgOwn.DataSource = dt;
+            dgOwn.Columns[0].HeaderText = "Mã KH";
+            dgOwn.Columns[1].HeaderText = "Tên Khách Hàng";
+            dgOwn.Columns[2].HeaderText = "Tổng Tiền Hóa Đơn";
+            dgOwn.Columns[3].HeaderText = "Đã Trả";
+            dgOwn.Columns[4].HeaderText = "Còn Lại";
+            dgOwn.Columns[5].HeaderText = "SĐT";
+            dgOwn.Columns[6].HeaderText = "Email";
+            dgOwn.Columns[7].HeaderText = "Địa Chỉ";
+            dgOwn.Columns["total"].DefaultCellStyle.Format = "N2";
+            dgOwn.Columns["payCus"].DefaultCellStyle.Format = "N2";
+            dgOwn.Columns["else"].DefaultCellStyle.Format = "N2";
+
+
+
+            dgOwn.Columns[0].Width = 50;
+            dgOwn.Columns[1].Width = 140;
+            dgOwn.Columns[2].Width = 80;
+            dgOwn.Columns[3].Width = 80;
+            dgOwn.Columns[4].Width = 80;
+            dgOwn.Columns[5].Width = 70;
+            dgOwn.Columns[6].Width = 30;
+            dgOwn.Columns[7].Width = 100;
+
+            if (dt.Rows.Count > 0)
+            {
+                dgOwn.Rows[0].Selected = true;
+                
+                idCus = Int32.Parse(dgOwn.SelectedRows[0].Cells["id"].Value.ToString());
+                debt = Convert.ToDouble(dgOwn.SelectedRows[0].Cells["else"].Value.ToString());
+                LoadDebtSheet();
+            }
+            
+        }
+        private void LoadDebtSheet()
+        {
+            DebtBUS b = new DebtBUS();
+            DataTable dt = b.getAll(idCus);
+            dgSheetOwn.DataSource = dt;
+            dgSheetOwn.Columns[0].HeaderText = "Số Tiền Thu";
+            dgSheetOwn.Columns[1].HeaderText = "Ngày Thu";
+            dgSheetOwn.Columns[2].HeaderText = "Trạng Thái";
+            dgSheetOwn.Columns[3].HeaderText = "Người Tạo Phiếu";
+            dgSheetOwn.Columns[4].HeaderText = "Ngày Tạo";
+            dgSheetOwn.Columns["debtMoney"].DefaultCellStyle.Format = "N2";
+           
+
+            dgSheetOwn.Columns[0].Width = 90;
+            dgSheetOwn.Columns[1].Width = 100;
+            dgSheetOwn.Columns[2].Width = 60;
+            dgSheetOwn.Columns[3].Width = 100;
+            dgSheetOwn.Columns[4].Width = 100;
+
+            if (dt.Rows.Count > 0)
+            {
+               
+            }
+        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -108,16 +173,20 @@ namespace ManageBook.GUI
 
         private void dgOrderBook_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgOrderBook.Rows[index];
-            RowSelected = new OrderBookDTO();
-            RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelected.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
-            RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
-            RowSelected.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
-            RowSelected.Supplier = row.Cells["supplier"].Value.ToString();
+            if (e.RowIndex >= 0)
 
-            MessageBox.Show(RowSelected.Supplier);
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgOrderBook.Rows[index];
+                RowSelected = new OrderBookDTO();
+                RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelected.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
+                RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
+                RowSelected.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
+                RowSelected.Supplier = row.Cells["supplier"].Value.ToString();
+            }
+            
+            //MessageBox.Show(RowSelected.Supplier);
         }
 
         private void xtraTabControl1_Click(object sender, EventArgs e)
@@ -128,18 +197,24 @@ namespace ManageBook.GUI
         private void ManageSheet_Load(object sender, EventArgs e)
         {
             LoadData();
+            LoadDataOwn();
+            
         }
 
         private void dgOrderBook_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgOrderBook.Rows[index];
-            RowSelected = new OrderBookDTO();
-            RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelected.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
-            RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
-            RowSelected.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
-            RowSelected.Supplier = row.Cells["supplier"].Value.ToString();
+            if (e.RowIndex >= 0)
+
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgOrderBook.Rows[index];
+                RowSelected = new OrderBookDTO();
+                RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelected.IdBook = Int32.Parse(row.Cells["idBook"].Value.ToString());
+                RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
+                RowSelected.Quantity = Int32.Parse(row.Cells["quantity"].Value.ToString());
+                RowSelected.Supplier = row.Cells["supplier"].Value.ToString();
+            }
 
            
         }
@@ -220,6 +295,42 @@ namespace ManageBook.GUI
             {
                 throw ex;
             }
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgOwn_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if ( e.RowIndex >= 0)
+
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgOwn.Rows[index];
+                idCus = Int32.Parse(row.Cells["id"].Value.ToString());
+                debt = Convert.ToDouble(row.Cells["else"].Value.ToString());
+                LoadDebtSheet();
+                //MessageBox.Show("" + debt);
+                // Add  Logic neccessary for Cell Click event
+            }
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            FormDebt formEdit = new FormDebt(this);
+            formEdit.IdCus = idCus;
+            formEdit.Debt = debt;
+            formEdit.StartPosition = FormStartPosition.CenterScreen;
+            formEdit.ShowDialog();
+            LoadData();
         }
     }
 }

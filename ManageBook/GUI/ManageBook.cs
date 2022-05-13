@@ -145,19 +145,23 @@ namespace ManageBook.GUI
 
         private void dgBooks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewRow row = dgBooks.Rows[index];
-            RowSelected = new BookDTO();
-            RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
-            RowSelected.NameBook = row.Cells["nameBook"].Value.ToString();
-            RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
-            RowSelected.Kind = row.Cells["kind"].Value.ToString();
-            RowSelected.Author = row.Cells["author"].Value.ToString();
+            if (e.RowIndex >= 0)
 
-            txtTenSach.Text = RowSelected.NameBook;
-            txtTacGia.Text = RowSelected.Author;
-            txtGiaBan.Text = RowSelected.Price.ToString();
-            cboTheLoai.SelectedItem = RowSelected.Kind;
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgBooks.Rows[index];
+                RowSelected = new BookDTO();
+                RowSelected.Id = Int32.Parse(row.Cells["id"].Value.ToString());
+                RowSelected.NameBook = row.Cells["nameBook"].Value.ToString();
+                RowSelected.Price = double.Parse(row.Cells["price"].Value.ToString());
+                RowSelected.Kind = row.Cells["kind"].Value.ToString();
+                RowSelected.Author = row.Cells["author"].Value.ToString();
+
+                txtTenSach.Text = RowSelected.NameBook;
+                txtTacGia.Text = RowSelected.Author;
+                txtGiaBan.Text = RowSelected.Price.ToString();
+                cboTheLoai.SelectedItem = RowSelected.Kind;
+            }
 
         }
 

@@ -31,6 +31,104 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
+        public DataTable reportDebt()
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "IF OBJECT_ID(N'Tempdb..#tempN') IS NOT  NULL  DROP TABLE #tempN " +
+                    "SELECT a.id, a.idCus, a.payCus, SUM(b.price * b.quantity)[TongNo], a.dateReceipt " +
+                    "INTO #tempN " +
+                    "FROM receipt a " +
+                    "LEFT JOIN receipt_detail b ON a.id = b.idReceipt " +
+                    "WHERE a.[status] = N'Trả Trước' " +
+                    "GROUP BY a.id, a.idCus, a.payCus, a.dateReceipt " +
+                    "SELECT b.id, b.fullName " +
+                    ",(SELECT TOP 1 TongNo - payCus  FROM #tempN WHERE a.idCus = idCus ORDER BY dateReceipt ASC ) [NoDau] " +
+                    ",(SUM(c.price * c.quantity) - a.payCus) - (SELECT TOP 1 TongNo - payCus  FROM #tempN WHERE a.idCus = idCus ORDER BY dateReceipt ASC ) [PhatSinh] " +
+                    ",SUM(c.price * c.quantity) - a.payCus[TongNo] " +
+                    ", b.birthday, b.[address]" +
+                    "FROM receipt a " +
+                    "LEFT JOIN customers b ON a.idCus = b.id " +
+                    "LEFT JOIN receipt_detail c ON c.idReceipt = a.id " +
+                    "WHERE a.[status] = N'Trả Trước' " +
+                    "GROUP BY b.id, b.fullName,b.birthday,b.[address], a.idCus, a.payCus ";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
+
+        public DataTable reportDebtQuery(string tenKhachHang)
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "IF OBJECT_ID(N'Tempdb..#tempN') IS NOT  NULL  DROP TABLE #tempN " +
+                    "SELECT a.id, a.idCus, a.payCus, SUM(b.price * b.quantity)[TongNo], a.dateReceipt " +
+                    "INTO #tempN " +
+                    "FROM receipt a " +
+                    "LEFT JOIN receipt_detail b ON a.id = b.idReceipt " +
+                    "WHERE a.[status] = N'Trả Trước' " +
+                    "GROUP BY a.id, a.idCus, a.payCus, a.dateReceipt " +
+                    "SELECT b.id, b.fullName " +
+                    ",(SELECT TOP 1 TongNo - payCus  FROM #tempN WHERE a.idCus = idCus ORDER BY dateReceipt ASC ) [NoDau] " +
+                    ",(SUM(c.price * c.quantity) - a.payCus) - (SELECT TOP 1 TongNo - payCus  FROM #tempN WHERE a.idCus = idCus ORDER BY dateReceipt ASC ) [PhatSinh] " +
+                    ",SUM(c.price * c.quantity) - a.payCus[TongNo] " +
+                    ", b.birthday, b.[address]" +
+                    "FROM receipt a " +
+                    "LEFT JOIN customers b ON a.idCus = b.id " +
+                    "LEFT JOIN receipt_detail c ON c.idReceipt = a.id " +
+                    "WHERE a.[status] = N'Trả Trước' ";
+                if(tenKhachHang != "")
+                {
+                    strSql += $" AND b.fullName like '%{tenKhachHang}%'";
+                }
+                strSql += "GROUP BY b.id, b.fullName,b.birthday,b.[address], a.idCus, a.payCus ";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
+
+        public DataTable getOwn()
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT b.id, b.fullName,  SUM(c.price * c.quantity) [total], a.payCus, SUM(c.price * c.quantity) - a.payCus [else], b.phone, b.email, b.[address] FROM receipt a LEFT JOIN customers b ON a.idCus = b.id LEFT JOIN receipt_detail c ON a.id = c.idReceipt WHERE a.[status] = N'Trả Trước' GROUP BY b.id, b.fullName, b.phone, b.email, b.[address], a.payCus ";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
 
         public DataTable getCustomers(string fullName, string email, string birthday, int gender, string address, string phone)
         {

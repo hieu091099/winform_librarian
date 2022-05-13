@@ -53,7 +53,10 @@ namespace ManageBook.DAO
                 }
                 if (dateFrom != "" && dateTo != "")
                 {
-                    strSql += $" AND a.dateReceipt BETWEEN '{dateFrom}' AND '{dateTo}'";
+                    DateTime tuNgay = DateTime.Parse(dateFrom);
+                    DateTime denNgay = DateTime.Parse(dateTo);
+
+                    strSql += $" AND a.dateReceipt BETWEEN '{tuNgay.ToString("yyyyMMdd")}' AND '{denNgay.ToString("yyyyMMdd")}'";
                 }
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
@@ -122,6 +125,7 @@ namespace ManageBook.DAO
                             new SqlParameter { ParameterName = "@status", Value = b.Status },
                             new SqlParameter { ParameterName = "@payCus", Value = b.PayCus }
                     );
+                
 
             }
             catch (Exception ex)
