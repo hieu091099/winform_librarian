@@ -121,6 +121,12 @@
     <Compile Include="GUI\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormFunction\EditBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,12 @@
     <Compile Include="GUI\Receipt.Designer.cs">
       <DependentUpon>Receipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Regulartion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Regulartion.Designer.cs">
+      <DependentUpon>Regulartion.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Report.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormFunction\EditBook.resx">
       <DependentUpon>EditBook.cs</DependentUpon>
@@ -239,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Receipt.resx">
       <DependentUpon>Receipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Regulartion.resx">
+      <DependentUpon>Regulartion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>

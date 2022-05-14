@@ -55,16 +55,34 @@ namespace ManageBook.GUI.FormFunction
         {
             DebtDTO b = new DebtDTO();
             b.IdCus = IdCus;
-            b.DebtMoney = Convert.ToDouble(txtDebt.Text);
+            b.DebtMoney = Convert.ToDouble(txtGet.Text);
             b.CollectionDate = deNgayThu.DateTime;
 
-
-            DebtBUS bus = new DebtBUS();
-            if (bus.insert(b) == 1)
+            if(b.DebtMoney > Debt)
             {
-                MessageBox.Show("Thêm thành công!");
-                this.Close();
+                MessageBox.Show("Số tiền thu không được lớn hơn số tiền khách nợ!");
             }
+            else
+            {
+                DebtBUS bus = new DebtBUS();
+                if (bus.insert(b) == 1)
+                {
+                    MessageBox.Show("Thêm thành công!");
+                    this.Close();
+                }
+            }
+
+            
+        }
+
+        private void txtGet_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtGet.Text = string.Format("{0:#,##0}", txtGet.Text);
+            }
+            
+
         }
     }
 }

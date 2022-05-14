@@ -36,5 +36,29 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
+        public int edit(int id)
+        {
+            try
+            {
+                DebtDAO dao = new DebtDAO();
+                return dao.edit(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int remove(int id )
+        {
+            try
+            {
+                DebtDAO dao = new DebtDAO();
+                return dao.remove(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

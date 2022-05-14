@@ -124,6 +124,7 @@ namespace ManageBook.GUI.FormFunction
             this.txtGet.Name = "txtGet";
             this.txtGet.Size = new System.Drawing.Size(185, 21);
             this.txtGet.TabIndex = 70;
+            this.txtGet.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtGet_KeyUp);
             // 
             // labelControl4
             // 

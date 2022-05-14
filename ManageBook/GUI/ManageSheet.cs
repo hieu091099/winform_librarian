@@ -17,6 +17,7 @@ namespace ManageBook.GUI
     public partial class ManageSheet : DevExpress.XtraEditors.XtraUserControl
     {
         OrderBookDTO RowSelected;
+        int idDebt;
         int idCus;
         double debt;
         public ManageSheet()
@@ -129,13 +130,15 @@ namespace ManageBook.GUI
             DebtBUS b = new DebtBUS();
             DataTable dt = b.getAll(idCus);
             dgSheetOwn.DataSource = dt;
+            dgSheetOwn.Columns["id"].Visible = false;
             dgSheetOwn.Columns[0].HeaderText = "Số Tiền Thu";
             dgSheetOwn.Columns[1].HeaderText = "Ngày Thu";
             dgSheetOwn.Columns[2].HeaderText = "Trạng Thái";
             dgSheetOwn.Columns[3].HeaderText = "Người Tạo Phiếu";
             dgSheetOwn.Columns[4].HeaderText = "Ngày Tạo";
+            
             dgSheetOwn.Columns["debtMoney"].DefaultCellStyle.Format = "N2";
-           
+
 
             dgSheetOwn.Columns[0].Width = 90;
             dgSheetOwn.Columns[1].Width = 100;
@@ -145,7 +148,8 @@ namespace ManageBook.GUI
 
             if (dt.Rows.Count > 0)
             {
-               
+                dgSheetOwn.Rows[0].Selected = true;
+                idDebt = Int32.Parse(dgSheetOwn.SelectedRows[0].Cells["id"].Value.ToString());
             }
         }
 
@@ -331,6 +335,72 @@ namespace ManageBook.GUI
             formEdit.StartPosition = FormStartPosition.CenterScreen;
             formEdit.ShowDialog();
             LoadData();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn cập nhật trạng thái phiếu  '{idDebt}' sang ĐÃ TRẢ!", "Thông Báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Information);
+
+            if (dr == DialogResult.Yes)
+            {
+                if (idDebt != null)
+                {
+                    try
+                    {
+                        
+
+                        DebtBUS bus = new DebtBUS();
+                        bus.edit(idDebt);
+                        LoadDebtSheet();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+
+            }
+        }
+
+        private void dgSheetOwn_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = dgSheetOwn.Rows[index];
+                
+                idDebt = Int32.Parse(row.Cells["id"].Value.ToString());
+                
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn xóa phiếu  '{idDebt}' !", "Thông Báo!", MessageBoxButtons.YesNo,
+           MessageBoxIcon.Information);
+
+            if (dr == DialogResult.Yes)
+            {
+                if (idDebt != null)
+                {
+                    try
+                    {
+
+                        DebtBUS bus = new DebtBUS();
+                        bus.remove(idDebt);
+                        LoadDebtSheet();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+
+            }
         }
     }
 }

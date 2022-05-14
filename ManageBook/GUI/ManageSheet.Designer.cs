@@ -309,11 +309,12 @@ namespace ManageBook.GUI
             // 
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
             this.btnDelete.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(126, 20);
+            this.btnDelete.Location = new System.Drawing.Point(174, 20);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(70, 23);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Remove";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -321,9 +322,10 @@ namespace ManageBook.GUI
             this.btnEdit.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
             this.btnEdit.Location = new System.Drawing.Point(66, 20);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(54, 23);
+            this.btnEdit.Size = new System.Drawing.Size(102, 23);
             this.btnEdit.TabIndex = 9;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Update Status";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -343,6 +345,7 @@ namespace ManageBook.GUI
             this.dgSheetOwn.Name = "dgSheetOwn";
             this.dgSheetOwn.Size = new System.Drawing.Size(294, 485);
             this.dgSheetOwn.TabIndex = 0;
+            this.dgSheetOwn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSheetOwn_CellClick);
             // 
             // groupBox1
             // 

@@ -116,6 +116,7 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
+                provider.Connect();
                 string strSqlGetSold = "SELECT quantity, idBook  FROM receipt_detail WHERE id = @id ";
                 DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@id", Value = id });
                 int quantity = dt.Rows[0].Field<int>("quantity");
@@ -130,7 +131,7 @@ namespace ManageBook.DAO
                     );
 
                 string strSql = "DELETE FROM receipt_detail WHERE id = @id";
-                provider.Connect();
+                
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = id }
                     );
