@@ -47,12 +47,24 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
-        public DataTable reportDebtQuery(string tenKhachHang)
+        public DataTable reportDebtCus()
         {
             try
             {
                 CustomerDAO b = new CustomerDAO();
-                return b.reportDebtQuery(tenKhachHang);
+                return b.reportDebtCus();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable reportDebtQuery(string tenKhachHang, string dateFrom, string dateTo)
+        {
+            try
+            {
+                CustomerDAO b = new CustomerDAO();
+                return b.reportDebtQuery(tenKhachHang, dateFrom, dateTo);
             }
             catch (Exception ex)
             {

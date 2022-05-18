@@ -67,8 +67,35 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
+        public DataTable reportDebtCus()
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT b.fullName, a.id," +
+                                "(SELECT SUM(c.price * quantity) FROM receipt_detail c WHERE c.idReceipt = a.id)[total], " +
+                                "a.payCus, " +
+                                "(SELECT SUM(c.price * quantity) FROM receipt_detail c WHERE c.idReceipt = a.id) -a.payCus[else], " +
+                                "b.birthday, b.[address] " +
+                                "FROM receipt a " +
+                                "LEFT JOIN customers b ON a.idCus = b.id " +
+                                "WHERE a.[status] = N'Trả Trước' GROUP BY b.fullName, a.id, a.payCus, b.birthday, b.[address] ";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
 
-        public DataTable reportDebtQuery(string tenKhachHang)
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
+
+        public DataTable reportDebtQuery(string tenKhachHang, string dateFrom, string dateTo)
         {
             Provider provider = new Provider();
             try
@@ -92,6 +119,13 @@ namespace ManageBook.DAO
                 if(tenKhachHang != "")
                 {
                     strSql += $" AND b.fullName like '%{tenKhachHang}%'";
+                }
+                if (dateFrom != "" && dateTo != "")
+                {
+                    DateTime tuNgay = DateTime.Parse(dateFrom);
+                    DateTime denNgay = DateTime.Parse(dateTo);
+
+                    strSql += $" AND a.dateReceipt BETWEEN '{tuNgay.ToString("yyyyMMdd")}' AND '{denNgay.ToString("yyyyMMdd")}'";
                 }
                 strSql += "GROUP BY b.id, b.fullName,b.birthday,b.[address], a.idCus, a.payCus ";
                 provider.Connect();

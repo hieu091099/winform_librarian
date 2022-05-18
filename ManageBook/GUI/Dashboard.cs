@@ -117,5 +117,23 @@ namespace ManageBook.GUI
             this.pContainerP.Controls.Add(frm);
             frm.Show();
         }
+
+        private void accordionControlElement7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement13_Click(object sender, EventArgs e)
+        {
+
+            CustomerDebt frm = new CustomerDebt();
+            frm.TopLevel = false;
+            frm.AutoScroll = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

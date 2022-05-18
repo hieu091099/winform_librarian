@@ -34,12 +34,12 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
-        public DataTable reportBookQuery(string tenSach)
+        public DataTable reportBookQuery(string tenSach, string dateFrom, string dateTo)
         {
             try
             {
                 BookDAO b = new BookDAO();
-                return b.reportBookQuery(tenSach);
+                return b.reportBookQuery(tenSach, dateFrom, dateTo);
             }
             catch (Exception ex)
             {

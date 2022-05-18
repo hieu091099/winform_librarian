@@ -86,6 +86,7 @@
     <Compile Include="BUS\BookBUS.cs" />
     <Compile Include="BUS\CustomerBUS.cs" />
     <Compile Include="BUS\DebtBUS.cs" />
+    <Compile Include="BUS\EmployeeBUS.cs" />
     <Compile Include="BUS\OrderBookBUS.cs" />
     <Compile Include="BUS\ReceiptBUS.cs" />
     <Compile Include="BUS\ReceiptDetailBUS.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="DAO\Common.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\DebtDAO.cs" />
+    <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\OrderBookDAO.cs" />
     <Compile Include="DAO\Provider.cs" />
     <Compile Include="DAO\ReceiptDAO.cs" />
@@ -104,11 +106,18 @@
     <Compile Include="DTO\BookDTO.cs" />
     <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\DebtDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
     <Compile Include="DTO\OrderBookDTO.cs" />
     <Compile Include="DTO\ReceiptDTO.cs" />
     <Compile Include="DTO\ReceiptDetailDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WareHouseDTO.cs" />
+    <Compile Include="GUI\CustomerDebt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomerDebt.Designer.cs">
+      <DependentUpon>CustomerDebt.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +222,9 @@
       <DependentUpon>WareHouse.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\CustomerDebt.resx">
+      <DependentUpon>CustomerDebt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>

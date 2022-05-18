@@ -31,7 +31,7 @@ namespace ManageBook.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Employee));
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
-            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -39,26 +39,26 @@ namespace ManageBook.GUI
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.txtTaiKhoan = new System.Windows.Forms.TextBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             this.txtDiaChi = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiNhanVien = new System.Windows.Forms.ComboBox();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtMatKhau = new System.Windows.Forms.TextBox();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhanVien)).BeginInit();
             this.txtDiaChi.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtSDT
+            // txtHoTen
             // 
-            this.txtSDT.Location = new System.Drawing.Point(99, 61);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(154, 21);
-            this.txtSDT.TabIndex = 19;
+            this.txtHoTen.Location = new System.Drawing.Point(99, 61);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(154, 21);
+            this.txtHoTen.TabIndex = 19;
             // 
             // labelControl6
             // 
@@ -93,6 +93,7 @@ namespace ManageBook.GUI
             this.dgNhanVien.Name = "dgNhanVien";
             this.dgNhanVien.Size = new System.Drawing.Size(958, 443);
             this.dgNhanVien.TabIndex = 5;
+            this.dgNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgNhanVien_CellClick);
             // 
             // btnReload
             // 
@@ -120,13 +121,14 @@ namespace ManageBook.GUI
             this.btnSave.Size = new System.Drawing.Size(84, 40);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtHoTen
+            // txtTaiKhoan
             // 
-            this.txtHoTen.Location = new System.Drawing.Point(99, 30);
-            this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(154, 21);
-            this.txtHoTen.TabIndex = 4;
+            this.txtTaiKhoan.Location = new System.Drawing.Point(99, 30);
+            this.txtTaiKhoan.Name = "txtTaiKhoan";
+            this.txtTaiKhoan.Size = new System.Drawing.Size(154, 21);
+            this.txtTaiKhoan.TabIndex = 4;
             // 
             // labelControl1
             // 
@@ -156,15 +158,16 @@ namespace ManageBook.GUI
             this.btnRemove.Size = new System.Drawing.Size(91, 40);
             this.btnRemove.TabIndex = 12;
             this.btnRemove.Text = "Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // txtDiaChi
             // 
             this.txtDiaChi.BackColor = System.Drawing.Color.White;
-            this.txtDiaChi.Controls.Add(this.comboBox1);
+            this.txtDiaChi.Controls.Add(this.cboLoaiNhanVien);
             this.txtDiaChi.Controls.Add(this.labelControl3);
-            this.txtDiaChi.Controls.Add(this.textBox1);
+            this.txtDiaChi.Controls.Add(this.txtMatKhau);
             this.txtDiaChi.Controls.Add(this.labelControl2);
-            this.txtDiaChi.Controls.Add(this.txtSDT);
+            this.txtDiaChi.Controls.Add(this.txtHoTen);
             this.txtDiaChi.Controls.Add(this.labelControl6);
             this.txtDiaChi.Controls.Add(this.simpleButton1);
             this.txtDiaChi.Controls.Add(this.btnSearch);
@@ -172,7 +175,7 @@ namespace ManageBook.GUI
             this.txtDiaChi.Controls.Add(this.btnRemove);
             this.txtDiaChi.Controls.Add(this.btnCancel);
             this.txtDiaChi.Controls.Add(this.btnSave);
-            this.txtDiaChi.Controls.Add(this.txtHoTen);
+            this.txtDiaChi.Controls.Add(this.txtTaiKhoan);
             this.txtDiaChi.Controls.Add(this.labelControl1);
             this.txtDiaChi.Location = new System.Drawing.Point(3, 34);
             this.txtDiaChi.Name = "txtDiaChi";
@@ -180,21 +183,18 @@ namespace ManageBook.GUI
             this.txtDiaChi.TabIndex = 6;
             this.txtDiaChi.TabStop = false;
             this.txtDiaChi.Text = "Thông Tin";
+            this.txtDiaChi.Enter += new System.EventHandler(this.txtDiaChi_Enter);
             // 
-            // textBox1
+            // cboLoaiNhanVien
             // 
-            this.textBox1.Location = new System.Drawing.Point(366, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 21);
-            this.textBox1.TabIndex = 21;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(278, 33);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(49, 13);
-            this.labelControl2.TabIndex = 20;
-            this.labelControl2.Text = "Mật Khẩu:";
+            this.cboLoaiNhanVien.FormattingEnabled = true;
+            this.cboLoaiNhanVien.Items.AddRange(new object[] {
+            "Nhân Viên",
+            "Quản Lý"});
+            this.cboLoaiNhanVien.Location = new System.Drawing.Point(366, 61);
+            this.cboLoaiNhanVien.Name = "cboLoaiNhanVien";
+            this.cboLoaiNhanVien.Size = new System.Drawing.Size(154, 21);
+            this.cboLoaiNhanVien.TabIndex = 23;
             // 
             // labelControl3
             // 
@@ -204,16 +204,20 @@ namespace ManageBook.GUI
             this.labelControl3.TabIndex = 22;
             this.labelControl3.Text = "Loại Nhân Viên:";
             // 
-            // comboBox1
+            // txtMatKhau
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Nhân Viên",
-            "Quản Lý"});
-            this.comboBox1.Location = new System.Drawing.Point(366, 61);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(154, 21);
-            this.comboBox1.TabIndex = 23;
+            this.txtMatKhau.Location = new System.Drawing.Point(366, 30);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Size = new System.Drawing.Size(154, 21);
+            this.txtMatKhau.TabIndex = 21;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(278, 33);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(49, 13);
+            this.labelControl2.TabIndex = 20;
+            this.labelControl2.Text = "Mật Khẩu:";
             // 
             // Employee
             // 
@@ -227,6 +231,7 @@ namespace ManageBook.GUI
             this.Controls.Add(this.txtDiaChi);
             this.Name = "Employee";
             this.Text = "Employee";
+            this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhanVien)).EndInit();
             this.txtDiaChi.ResumeLayout(false);
@@ -239,7 +244,7 @@ namespace ManageBook.GUI
         #endregion
 
         private DevExpress.XtraEditors.DateTimeChartRangeControlClient dateTimeChartRangeControlClient1;
-        private System.Windows.Forms.TextBox txtSDT;
+        private System.Windows.Forms.TextBox txtHoTen;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
@@ -247,14 +252,14 @@ namespace ManageBook.GUI
         private DevExpress.XtraEditors.SimpleButton btnReload;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.TextBox txtTaiKhoan;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.SimpleButton btnRemove;
         private System.Windows.Forms.GroupBox txtDiaChi;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMatKhau;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboLoaiNhanVien;
     }
 }

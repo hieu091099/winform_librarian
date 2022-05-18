@@ -477,3 +477,4 @@ C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\Manag
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.Report.resources
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.Regulartion.resources
 C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.Employee.resources
+C:\Users\Administrator\source\repos\winform_librarian\ManageBook\obj\Debug\ManageBook.GUI.CustomerDebt.resources

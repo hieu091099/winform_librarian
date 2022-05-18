@@ -75,14 +75,14 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "INSERT INTO users (username, password, fullName, type, status) VALUES (@username, @password, @fullName, @type)";
+                string strSql = "INSERT INTO users (username, password, fullName, type, status) VALUES (@username, @password, @fullName, @type, 1)";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@username", Value = b.Username },
                             new SqlParameter { ParameterName = "@password", Value = b.Password },
                             new SqlParameter { ParameterName = "@fullName", Value = b.FullName },
-                            new SqlParameter { ParameterName = "@type", Value = b.Type },
-                            new SqlParameter { ParameterName = "@status", Value = b.Status }
+                            new SqlParameter { ParameterName = "@type", Value = b.Type }
+                            
 
                     );
 

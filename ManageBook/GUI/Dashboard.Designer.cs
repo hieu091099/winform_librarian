@@ -169,9 +169,11 @@ namespace ManageBook.GUI
             this.accordionControlElement7.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement12,
             this.accordionControlElement13});
+            this.accordionControlElement7.Expanded = true;
             this.accordionControlElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement7.ImageOptions.Image")));
             this.accordionControlElement7.Name = "accordionControlElement7";
             this.accordionControlElement7.Text = "Khách Hàng";
+            this.accordionControlElement7.Click += new System.EventHandler(this.accordionControlElement7_Click);
             // 
             // accordionControlElement12
             // 
@@ -185,6 +187,7 @@ namespace ManageBook.GUI
             this.accordionControlElement13.Name = "accordionControlElement13";
             this.accordionControlElement13.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement13.Text = "Thông Tin Nợ";
+            this.accordionControlElement13.Click += new System.EventHandler(this.accordionControlElement13_Click);
             // 
             // accordionControlElement8
             // 
@@ -206,6 +209,7 @@ namespace ManageBook.GUI
             // 
             this.accordionControlElement9.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement15});
+            this.accordionControlElement9.Expanded = true;
             this.accordionControlElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement9.ImageOptions.Image")));
             this.accordionControlElement9.Name = "accordionControlElement9";
             this.accordionControlElement9.Text = "Quy Định";

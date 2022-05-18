@@ -43,10 +43,18 @@ namespace ManageBook.GUI
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgCongNo = new System.Windows.Forms.DataGridView();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSearchDebt = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtTenKhachHang = new System.Windows.Forms.TextBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.deDateFromBook = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.deDateToBook = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.deDateToDebt = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.deDateFromDebt = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -57,6 +65,14 @@ namespace ManageBook.GUI
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCongNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromBook.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromBook.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToBook.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToBook.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToDebt.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToDebt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromDebt.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromDebt.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -87,6 +103,10 @@ namespace ManageBook.GUI
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.labelControl3);
+            this.panel1.Controls.Add(this.deDateToBook);
+            this.panel1.Controls.Add(this.labelControl2);
+            this.panel1.Controls.Add(this.deDateFromBook);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.labelControl6);
@@ -118,7 +138,7 @@ namespace ManageBook.GUI
             // btnSearch
             // 
             this.btnSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSearch.ImageOptions.SvgImage")));
-            this.btnSearch.Location = new System.Drawing.Point(237, 47);
+            this.btnSearch.Location = new System.Drawing.Point(676, 47);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 30);
             this.btnSearch.TabIndex = 20;
@@ -163,8 +183,12 @@ namespace ManageBook.GUI
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.labelControl5);
+            this.panel2.Controls.Add(this.deDateToDebt);
+            this.panel2.Controls.Add(this.labelControl8);
+            this.panel2.Controls.Add(this.deDateFromDebt);
             this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.simpleButton1);
+            this.panel2.Controls.Add(this.btnSearchDebt);
             this.panel2.Controls.Add(this.labelControl4);
             this.panel2.Controls.Add(this.txtTenKhachHang);
             this.panel2.Controls.Add(this.labelControl1);
@@ -190,15 +214,15 @@ namespace ManageBook.GUI
             this.dgCongNo.Size = new System.Drawing.Size(948, 541);
             this.dgCongNo.TabIndex = 0;
             // 
-            // simpleButton1
+            // btnSearchDebt
             // 
-            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(268, 36);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(90, 30);
-            this.simpleButton1.TabIndex = 28;
-            this.simpleButton1.Text = "Search";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.btnSearchDebt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btnSearchDebt.Location = new System.Drawing.Point(711, 39);
+            this.btnSearchDebt.Name = "btnSearchDebt";
+            this.btnSearchDebt.Size = new System.Drawing.Size(90, 30);
+            this.btnSearchDebt.TabIndex = 28;
+            this.btnSearchDebt.Text = "Search";
+            this.btnSearchDebt.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // labelControl4
             // 
@@ -227,6 +251,86 @@ namespace ManageBook.GUI
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Báo Cáo Công Nợ";
             // 
+            // deDateFromBook
+            // 
+            this.deDateFromBook.EditValue = null;
+            this.deDateFromBook.Location = new System.Drawing.Point(300, 52);
+            this.deDateFromBook.Name = "deDateFromBook";
+            this.deDateFromBook.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateFromBook.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateFromBook.Size = new System.Drawing.Size(134, 20);
+            this.deDateFromBook.TabIndex = 25;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(249, 54);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(45, 13);
+            this.labelControl2.TabIndex = 26;
+            this.labelControl2.Text = "Từ Ngày:";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(461, 55);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(52, 13);
+            this.labelControl3.TabIndex = 28;
+            this.labelControl3.Text = "Đến Ngày:";
+            // 
+            // deDateToBook
+            // 
+            this.deDateToBook.EditValue = null;
+            this.deDateToBook.Location = new System.Drawing.Point(524, 53);
+            this.deDateToBook.Name = "deDateToBook";
+            this.deDateToBook.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateToBook.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateToBook.Size = new System.Drawing.Size(134, 20);
+            this.deDateToBook.TabIndex = 27;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(492, 46);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(52, 13);
+            this.labelControl5.TabIndex = 36;
+            this.labelControl5.Text = "Đến Ngày:";
+            // 
+            // deDateToDebt
+            // 
+            this.deDateToDebt.EditValue = null;
+            this.deDateToDebt.Location = new System.Drawing.Point(555, 44);
+            this.deDateToDebt.Name = "deDateToDebt";
+            this.deDateToDebt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateToDebt.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateToDebt.Size = new System.Drawing.Size(134, 20);
+            this.deDateToDebt.TabIndex = 35;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(280, 45);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(45, 13);
+            this.labelControl8.TabIndex = 34;
+            this.labelControl8.Text = "Từ Ngày:";
+            // 
+            // deDateFromDebt
+            // 
+            this.deDateFromDebt.EditValue = null;
+            this.deDateFromDebt.Location = new System.Drawing.Point(331, 43);
+            this.deDateFromDebt.Name = "deDateFromDebt";
+            this.deDateFromDebt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateFromDebt.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateFromDebt.Size = new System.Drawing.Size(134, 20);
+            this.deDateFromDebt.TabIndex = 33;
+            // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +351,14 @@ namespace ManageBook.GUI
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgCongNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromBook.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromBook.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToBook.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToBook.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToDebt.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateToDebt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromDebt.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDateFromDebt.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,8 +379,16 @@ namespace ManageBook.GUI
         private System.Windows.Forms.TextBox txtTenSach;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgCongNo;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnSearchDebt;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.TextBox txtTenKhachHang;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.DateEdit deDateToBook;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.DateEdit deDateFromBook;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.DateEdit deDateToDebt;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.DateEdit deDateFromDebt;
     }
 }

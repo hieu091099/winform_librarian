@@ -110,9 +110,19 @@ namespace ManageBook.GUI
             {
 
                 var tenSach = txtTenSach.Text;
-               
+                var dateFrom = "";
+                var dateTo = "";
+                if (deDateFromBook.EditValue != null)
+                {
+                    dateFrom = deDateFromBook.EditValue.ToString();
+                }
+                if (deDateToBook.EditValue != null)
+                {
+                    dateTo = deDateToBook.EditValue.ToString();
+                }
+
                 BookBUS bus = new BookBUS();
-                DataTable dt = bus.reportBookQuery(tenSach);
+                DataTable dt = bus.reportBookQuery(tenSach, dateFrom, dateTo);
                 //dgCustomers.DataSource = dt;
                 dgReportBook.DataSource = dt;
 
@@ -129,9 +139,19 @@ namespace ManageBook.GUI
             {
 
                 var tenKhachHang = txtTenKhachHang.Text;
+                var dateFrom = "";
+                var dateTo = "";
+                if (deDateFromDebt.EditValue != null)
+                {
+                    dateFrom = deDateFromDebt.EditValue.ToString();
+                }
+                if (deDateToDebt.EditValue != null)
+                {
+                    dateTo = deDateToDebt.EditValue.ToString();
+                }
 
                 CustomerBUS bus = new CustomerBUS();
-                DataTable dt = bus.reportDebtQuery(tenKhachHang);
+                DataTable dt = bus.reportDebtQuery(tenKhachHang, dateFrom, dateTo);
                 //dgCustomers.DataSource = dt;
                 dgCongNo.DataSource = dt;
 

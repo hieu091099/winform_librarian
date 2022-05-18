@@ -50,7 +50,7 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
-        public DataTable reportBookQuery(string tenSach)
+        public DataTable reportBookQuery(string tenSach, string dateFrom, string dateTo)
         {
             Provider provider = new Provider();
             try
@@ -65,12 +65,19 @@ namespace ManageBook.DAO
                     ",SUM(a.totalQuantity - a.sold) - (SELECT TOP 1 totalQuantity - sold FROM #tempA WHERE id = a.idBook ORDER BY dateImport ASC ) [PhatSinh] " +
                     ",SUM(a.totalQuantity - a.sold)[TonCuoi]  " +
                     "FROM warehouse a " +
-                    "LEFT JOIN books b ON a.idBook = b.id ";
+                    "LEFT JOIN books b ON a.idBook = b.id WHERE 1=1 ";
                 if(tenSach != "")
                 {
-                    strSql += $" WHERE b.nameBook LIKE N'%{tenSach}%'";
+                    strSql += $" AND b.nameBook LIKE N'%{tenSach}%'";
                 }
-                  strSql +=  "GROUP BY b.id, b.nameBook, a.idBook, b.author, b.kind";
+                if (dateFrom != "" && dateTo != "")
+                {
+                    DateTime tuNgay = DateTime.Parse(dateFrom);
+                    DateTime denNgay = DateTime.Parse(dateTo);
+
+                    strSql += $" AND a.dateImport BETWEEN '{tuNgay.ToString("yyyyMMdd")}' AND '{denNgay.ToString("yyyyMMdd")}'";
+                }
+                strSql +=  "GROUP BY b.id, b.nameBook, a.idBook, b.author, b.kind";
 
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
