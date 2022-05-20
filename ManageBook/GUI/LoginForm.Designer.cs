@@ -166,6 +166,7 @@ namespace ManageBook.GUI
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.labelControl1);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();

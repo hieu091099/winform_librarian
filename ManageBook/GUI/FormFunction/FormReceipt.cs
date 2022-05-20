@@ -85,6 +85,10 @@ namespace ManageBook.GUI.FormFunction
                         MessageBox.Show("Thêm thành công!");
                         this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Khách Hàng Nợ Nhiều Hơn Quy Định!");
+                    }
                 }else if( TypeForm == "edit")
                 {
                     ReceiptDTO b = new ReceiptDTO();

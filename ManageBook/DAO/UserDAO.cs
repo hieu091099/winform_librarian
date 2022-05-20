@@ -10,17 +10,17 @@ namespace ManageBook.DAO
 {
     public class UserDAO
     {
-        public int Login(string username, string password)
+        public DataTable Login(string username, string password)
         {
 
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT COUNT(*) FROM users WHERE username = @username AND password = @password";
+                string strSql = "SELECT * FROM users WHERE username = @username AND password = @password";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql, new SqlParameter { ParameterName = "@username", Value = username }
                 , new SqlParameter { ParameterName = "@password", Value = password });
-                return (int)dt.Rows[0][0];
+                return dt;
 
             }
             catch (Exception ex)

@@ -44,25 +44,46 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "INSERT INTO receipt_detail (idReceipt, idBook, price, quantity) VALUES " +
-                                                            "(@idReceipt, @idBook, @price, @quantity)";
-                provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@idReceipt", Value = b.IdReceipt },
-                            new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price },
-                            new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
-                    );
-                string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE idBook = @idBook AND totalQuantity >= sold ORDER BY dateImport ASC";
-                DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
-                int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
-                int idRW = dt.Rows[0].Field<int>("id");
 
-                string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
-                int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
-                            new SqlParameter { ParameterName = "@id", Value = idRW },
-                            new SqlParameter { ParameterName = "@quantity", Value = quantity }
-                    );
+                
+
+                string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+                DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+                int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
+
+
+                string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=4";
+                DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
+                int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
+
+               if(tonKho - b.Quantity >= tonKhoQuyDinh)
+                {
+                    string strSql = "INSERT INTO receipt_detail (idReceipt, idBook, price, quantity) VALUES " +
+                                                            "(@idReceipt, @idBook, @price, @quantity)";
+                    provider.Connect();
+                    nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                                new SqlParameter { ParameterName = "@idReceipt", Value = b.IdReceipt },
+                                new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
+                                new SqlParameter { ParameterName = "@price", Value = b.Price },
+                                new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
+                        );
+                    string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE idBook = @idBook AND totalQuantity >= sold ORDER BY dateImport ASC";
+                    DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+                    int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
+                    int idRW = dt.Rows[0].Field<int>("id");
+
+                    string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
+                    int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
+                                new SqlParameter { ParameterName = "@id", Value = idRW },
+                                new SqlParameter { ParameterName = "@quantity", Value = quantity }
+                        );
+                }
+                else
+                {
+                    nRow = 0;
+                }
+
+                
             }
             catch (Exception ex)
             {

@@ -276,12 +276,23 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "DELETE FROM customers WHERE id = @id";
                 provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@id", Value = id }
+                string check = "SELECT COUNT(*) FROM receipt WHERE idCus=@id ";
+                DataTable dt = provider.Select(CommandType.Text, check, new SqlParameter { ParameterName = "@id", Value = id });
+                int result = (int)dt.Rows[0][0];
+                if (result == 0)
+                {
+                    string strSql = "DELETE FROM customers WHERE id = @id";
+                    provider.Connect();
+                    nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                                new SqlParameter { ParameterName = "@id", Value = id }
 
                     );
+                }
+                else
+                {
+                    nRow = 0;
+                }
             }
             catch (Exception ex)
             {

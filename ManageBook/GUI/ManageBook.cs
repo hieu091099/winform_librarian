@@ -116,7 +116,14 @@ namespace ManageBook.GUI
                     {
 
                         BookBUS bus = new BookBUS();
-                        bus.removeBook(RowSelected.Id);
+                        if(bus.removeBook(RowSelected.Id) == 1)
+                        {
+                            MessageBox.Show("Xóa Thành Công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa Thất Bại! Sách Đã Tồn Tại Trong Kho");
+                        }
                         LoadData();
 
                     }

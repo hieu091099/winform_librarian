@@ -35,17 +35,19 @@ namespace ManageBook.DAO
         public int insert(DebtDTO b)
         {
             int nRow = 0;
+            
             Provider provider = new Provider();
             try
             {
                 string strSql = "INSERT INTO debt_sheet (idCus, collectionDate, debtMoney, status, userId, createdDate) VALUES " +
-                                                            "(@idCus, @collectionDate, @debtMoney, N'Chờ Trả', 1, getdate())";
+                                                            "(@idCus, @collectionDate, @debtMoney, N'Chờ Trả', @userId, getdate())";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@idCus", Value = b.IdCus },
                             new SqlParameter { ParameterName = "@collectionDate", Value = b.CollectionDate },
-                            new SqlParameter { ParameterName = "@debtMoney", Value = b.DebtMoney }
-                           
+                            new SqlParameter { ParameterName = "@debtMoney", Value = b.DebtMoney },
+                            new SqlParameter { ParameterName = "@userId", Value = Common.CurrentUserId }
+
                     );
                 
             }

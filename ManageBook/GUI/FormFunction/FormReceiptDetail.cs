@@ -88,6 +88,11 @@ namespace ManageBook.GUI.FormFunction
                         MessageBox.Show("Thêm thành công!");
                         form.LoadDataDetail();
                     }
+                    else
+                    {
+                        MessageBox.Show("Số Khách Trong Kho Không Đủ!");
+
+                    }
                 }
                 else
                 {

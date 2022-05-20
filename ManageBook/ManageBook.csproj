@@ -90,6 +90,7 @@
     <Compile Include="BUS\OrderBookBUS.cs" />
     <Compile Include="BUS\ReceiptBUS.cs" />
     <Compile Include="BUS\ReceiptDetailBUS.cs" />
+    <Compile Include="BUS\RegulartionBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="BUS\WareHouseBUS.cs" />
     <Compile Include="DAO\BookDAO.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="DAO\Provider.cs" />
     <Compile Include="DAO\ReceiptDAO.cs" />
     <Compile Include="DAO\ReceiptDetailDAO.cs" />
+    <Compile Include="DAO\RegulartionDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DAO\WareHouseDAO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="DTO\OrderBookDTO.cs" />
     <Compile Include="DTO\ReceiptDTO.cs" />
     <Compile Include="DTO\ReceiptDetailDTO.cs" />
+    <Compile Include="DTO\RegulartionDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WareHouseDTO.cs" />
     <Compile Include="GUI\CustomerDebt.cs">

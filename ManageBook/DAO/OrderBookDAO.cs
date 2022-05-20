@@ -46,7 +46,7 @@ namespace ManageBook.DAO
                 }
                 if (author != "")
                 {
-                    strSql += $" AND  b.author LIKE '%{nameBook}%'";
+                    strSql += $" AND  b.author LIKE '%{author}%'";
                 }
                 if (kind != "")
                 {
@@ -74,23 +74,43 @@ namespace ManageBook.DAO
             try
             {
                 provider.Connect();
-                string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
-                    "VALUES(@idBook, @quantity, @price, @supplier, 1, getdate(), getdate()); SELECT SCOPE_IDENTITY();";
-                string insertWareHouse = "INSERT INTO warehouse (idBook, totalQuantity, sold, idOrder, dateImport) VALUES (@idBook, @quantity, 0, @id, getdate())";
-                idInsert = provider.ExecuteScalar(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
-                            new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price },
-                            new SqlParameter { ParameterName = "@supplier", Value = b.Supplier },
-                            new SqlParameter { ParameterName = "@userId", Value = b.UserId }
-                    );
-                
-                nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, insertWareHouse,
-                            new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
-                            new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
-                            new SqlParameter { ParameterName = "@id", Value = idInsert }
+                // check quy định tồn kho
+                string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+                DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+                int tonKho  = dtTonKho.Rows[0].Field<int>("Ton");
+                string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=2";
+                DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
+                int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
+                // check quy dinh so luong sach nhap it nhat
+                string sqlLuongSachNhapItNhat = "SELECT value FROM regulartion WHERE id=1";
+                DataTable dtLuongSachNhap = provider.Select(CommandType.Text, sqlLuongSachNhapItNhat);
+                int luongSachNhap = dtLuongSachNhap.Rows[0].Field<int>("value");
 
-                    );
+                if (tonKho <= tonKhoQuyDinh && b.Quantity >= luongSachNhap)
+                {
+
+                    string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
+                        "VALUES(@idBook, @quantity, @price, @supplier, @userId, getdate(), getdate()); SELECT SCOPE_IDENTITY();";
+                    string insertWareHouse = "INSERT INTO warehouse (idBook, totalQuantity, sold, idOrder, dateImport) VALUES (@idBook, @quantity, 0, @id, getdate())";
+                    idInsert = provider.ExecuteScalar(CommandType.Text, strSql,
+                                new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
+                                new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
+                                new SqlParameter { ParameterName = "@price", Value = b.Price },
+                                new SqlParameter { ParameterName = "@supplier", Value = b.Supplier },
+                                new SqlParameter { ParameterName = "@userId", Value = Common.CurrentUserId }
+                        );
+
+                    nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, insertWareHouse,
+                                new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },
+                                new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
+                                new SqlParameter { ParameterName = "@id", Value = idInsert }
+
+                        );
+                }
+                else
+                {
+                    nRowWareHouse = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -110,13 +130,14 @@ namespace ManageBook.DAO
             try
             {
                 string strSql = "UPDATE order_book SET  quantity = @quantity, price = @price, supplier = @supplier " +
-                    ", userId = 1,  dateModify = getdate() WHERE id = @id";
+                    ", userId = @userId,  dateModify = getdate() WHERE id = @id";
                 string updateWareHouse = "UPDATE warehouse SET totalQuantity = @quantity WHERE idOrder = @id";
                 provider.Connect();
                 nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                             new SqlParameter { ParameterName = "@id", Value = b.Id },
                             new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
                             new SqlParameter { ParameterName = "@price", Value = b.Price },
+                            new SqlParameter { ParameterName = "@userId", Value = Common.CurrentUserId },
                             new SqlParameter { ParameterName = "@supplier", Value = b.Supplier }
                             
                             

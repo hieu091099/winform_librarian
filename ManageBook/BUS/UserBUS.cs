@@ -1,6 +1,7 @@
 ﻿using ManageBook.DAO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace ManageBook.BUS
 {
     public class UserBUS
     {
-        public int Login(string username, string password)
+        public DataTable Login(string username, string password)
         {
             try
             {

@@ -119,7 +119,14 @@ namespace ManageBook.GUI
                     {
 
                         CustomerBUS bus = new CustomerBUS();
-                        bus.removeCustomer(RowSelected.Id);
+                        if(bus.removeCustomer(RowSelected.Id) == 1)
+                        {
+                            MessageBox.Show("Xóa Thành Công!!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Người Dùng Đã Mua Sách Không Thể Xóa!");
+                        }
                         LoadData();
 
                     }

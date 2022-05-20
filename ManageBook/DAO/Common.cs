@@ -8,8 +8,10 @@ namespace ManageBook.DAO
 {
     public class Common
     {
-        private string _currentUserId;
+        private static int _currentUserId;
+        private static string _typeUser;
 
-        public string CurrentUserId { get => _currentUserId; set => _currentUserId = value; }
+        public static int CurrentUserId { get => _currentUserId; set => _currentUserId = value; }
+        public static string TypeUser { get => _typeUser; set => _typeUser = value; }
     }
 }

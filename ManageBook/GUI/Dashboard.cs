@@ -7,11 +7,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ManageBook.DAO;
+
 
 namespace ManageBook.GUI
 {
     public partial class Dashboard : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        public string typeUser = Common.TypeUser;
         public Dashboard()
         {
             InitializeComponent();
@@ -127,6 +130,52 @@ namespace ManageBook.GUI
         {
 
             CustomerDebt frm = new CustomerDebt();
+            frm.TopLevel = false;
+            frm.AutoScroll = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            this.pContainerP.Controls.Clear();
+            this.pContainerP.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            //MessageBox.Show(Common.TypeUser);
+           if(Common.TypeUser == "Nhân Viên")
+            {
+                accordionControlElement6.Visible = false;
+                accordionControlElement8.Visible = false;
+                accordionControlElement9.Visible = false;
+
+            }
+           else if(Common.TypeUser == "Quản Lý")
+            {
+                accordionControlElement8.Visible = false;
+
+            }
+
+        }
+
+        private void accordionControlElement10_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm frm = new LoginForm();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void accordionControlElement20_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm frm = new LoginForm();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void accordionControlElement15_Click(object sender, EventArgs e)
+        {
+            Regulartion frm = new Regulartion();
             frm.TopLevel = false;
             frm.AutoScroll = true;
             frm.FormBorderStyle = FormBorderStyle.None;

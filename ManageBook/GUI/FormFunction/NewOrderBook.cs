@@ -152,6 +152,10 @@ namespace ManageBook.GUI.FormFunction
                         form.LoadData();
                         //this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Vi Phạm Quy Định Nhập Sách!");
+                    }
                 }
                 else
                 {

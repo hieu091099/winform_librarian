@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace ManageBook.DTO
 {
-    public class UserDTO
+    public class RegulartionDTO
     {
         private int _id;
-        private string _username;
-        private string _password;
-        private string _fullName;
+        private string _name;
+        private Boolean _status;
         private string _type;
-        private bool _status;
-
+        private int _value; 
 
         public int Id { get => _id; set => _id = value; }
-        public string Username { get => _username; set => _username = value; }
-        public string Password { get => _password; set => _password = value; }
-        public string FullName { get => _fullName; set => _fullName = value; }
+        public string Name { get => _name; set => _name = value; }
         public string Type { get => _type; set => _type = value; }
+        public int Value { get => _value; set => _value = value; }
         public bool Status { get => _status; set => _status = value; }
     }
 }

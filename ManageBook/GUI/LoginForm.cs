@@ -42,19 +42,27 @@ namespace ManageBook.GUI
                 };
 
                 UserBUS bus = new UserBUS();
-                if (bus.Login(user.Username, user.Password) == 1)
+                DataTable dt = new DataTable();
+                dt = bus.Login(user.Username, user.Password);
+                if(dt!= null)
                 {
-                    Dashboard db = new Dashboard();
-                   // c._userId = txtUsername.Text;
-                    db.StartPosition = FormStartPosition.CenterScreen;
-                    db.Show();
-                    this.Hide();
-                    
+                    if(dt.Rows.Count > 0)
+                    {
+                        Dashboard db = new Dashboard();
+                       
+                        Common.CurrentUserId = dt.Rows[0].Field<int>("id");
+                        Common.TypeUser = dt.Rows[0].Field<string>("type");
+
+                        db.StartPosition = FormStartPosition.CenterScreen;
+                        db.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Login fail!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Login fail");
-                }
+                
             }
             catch (Exception ex)
             {
