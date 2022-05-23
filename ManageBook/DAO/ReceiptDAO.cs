@@ -110,6 +110,29 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
+        public bool checkRegulartionCustomer(ReceiptDTO b)
+        {
+            Provider provider = new Provider();
+            provider.Connect();
+
+            string sqlNoKhachHang = "SELECT SUM(b.price * b.quantity) [total]  FROM receipt a LEFT JOIN receipt_detail b ON a.id = b.idReceipt WHERE a.[status] = N'Trả Trước' AND a.idCus =@idCus";
+            DataTable dtNo = provider.Select(CommandType.Text, sqlNoKhachHang, new SqlParameter { ParameterName = "@idCus", Value = b.IdCus });
+            int no = dtNo.Rows[0].Field<int>("total");
+
+
+            string sqlQuyDinhNo = "SELECT value FROM regulartion WHERE id=3";
+            DataTable dtQuyDinhNo = provider.Select(CommandType.Text, sqlQuyDinhNo);
+            int quyDinhNo = dtQuyDinhNo.Rows[0].Field<int>("value");
+
+            if (no <= quyDinhNo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public int insertReceipt(ReceiptDTO b)
         {
@@ -117,17 +140,9 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                // check quy định nhập sách
-                string sqlNoKhachHang = "SELECT SUM(b.price * b.quantity) [total]  FROM receipt a LEFT JOIN receipt_detail b ON a.id = b.idReceipt WHERE a.[status] = N'Trả Trước' AND a.idCus =@idCus";
-                DataTable dtNo = provider.Select(CommandType.Text, sqlNoKhachHang, new SqlParameter { ParameterName = "@idCus", Value = b.IdCus });
-                int no = dtNo.Rows[0].Field<int>("total");
+                
 
-
-                string sqlQuyDinhNo = "SELECT value FROM regulartion WHERE id=3";
-                DataTable dtQuyDinhNo = provider.Select(CommandType.Text, sqlQuyDinhNo);
-                int quyDinhNo = dtQuyDinhNo.Rows[0].Field<int>("value");
-
-                if(no <= quyDinhNo)
+                if(checkRegulartionCustomer(b))
                 {
                     string strSql = "INSERT INTO receipt ( idCus, status, payCus, userId, dateReceipt) " +
                                                "VALUES(@idCus, @status, @payCus, @userId, getdate())";

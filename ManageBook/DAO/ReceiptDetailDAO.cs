@@ -36,31 +36,47 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
-        
+        public bool checkRegulartion(ReceiptDetailDTO b)
+        {
+            Provider provider = new Provider();
+            provider.Connect();
+
+            string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+            DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+            int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
+
+
+            string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=4";
+            DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
+            int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
+
+            if (tonKho - b.Quantity >= tonKhoQuyDinh)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public int insert(ReceiptDetailDTO b)
         {
             int nRow = 0;
             Provider provider = new Provider();
+
             try
             {
 
-                
-
-                string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
-                DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
-                int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
+                provider.Connect();
 
 
-                string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=4";
-                DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
-                int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
-
-               if(tonKho - b.Quantity >= tonKhoQuyDinh)
+               if(checkRegulartion(b))
                 {
                     string strSql = "INSERT INTO receipt_detail (idReceipt, idBook, price, quantity) VALUES " +
                                                             "(@idReceipt, @idBook, @price, @quantity)";
-                    provider.Connect();
+                   
                     nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                                 new SqlParameter { ParameterName = "@idReceipt", Value = b.IdReceipt },
                                 new SqlParameter { ParameterName = "@idBook", Value = b.IdBook },

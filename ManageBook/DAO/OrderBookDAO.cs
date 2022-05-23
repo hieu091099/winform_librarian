@@ -66,6 +66,30 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
+        public bool checkRegulartion(OrderBookDTO b)
+        {
+            Provider provider = new Provider();
+            provider.Connect();
+
+            string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+            DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+            int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
+            string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=2";
+            DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
+            int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
+            // check quy dinh so luong sach nhap it nhat
+            string sqlLuongSachNhapItNhat = "SELECT value FROM regulartion WHERE id=1";
+            DataTable dtLuongSachNhap = provider.Select(CommandType.Text, sqlLuongSachNhapItNhat);
+            int luongSachNhap = dtLuongSachNhap.Rows[0].Field<int>("value");
+            if (tonKho <= tonKhoQuyDinh && b.Quantity >= luongSachNhap)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public int insert(OrderBookDTO b)
         {
             int idInsert = 0;
@@ -75,18 +99,8 @@ namespace ManageBook.DAO
             {
                 provider.Connect();
                 // check quy định tồn kho
-                string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
-                DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
-                int tonKho  = dtTonKho.Rows[0].Field<int>("Ton");
-                string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=2";
-                DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
-                int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
-                // check quy dinh so luong sach nhap it nhat
-                string sqlLuongSachNhapItNhat = "SELECT value FROM regulartion WHERE id=1";
-                DataTable dtLuongSachNhap = provider.Select(CommandType.Text, sqlLuongSachNhapItNhat);
-                int luongSachNhap = dtLuongSachNhap.Rows[0].Field<int>("value");
-
-                if (tonKho <= tonKhoQuyDinh && b.Quantity >= luongSachNhap)
+               
+                if (checkRegulartion(b) == true)
                 {
 
                     string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +

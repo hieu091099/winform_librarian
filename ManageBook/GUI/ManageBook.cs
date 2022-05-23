@@ -122,7 +122,7 @@ namespace ManageBook.GUI
                         }
                         else
                         {
-                            MessageBox.Show("Xóa Thất Bại! Sách Đã Tồn Tại Trong Kho");
+                            MessageBox.Show("Xóa Thất Bại! Sách Đã Tồn Tại Trong Kho Hoặc Đã Được Tạo Hóa Đơn!");
                         }
                         LoadData();
 

@@ -185,6 +185,27 @@ namespace ManageBook.DAO
             }
             return nRow;
         }
+        public bool checkConditionDelete(int id)
+        {
+            Provider provider = new Provider();
+            provider.Connect();
+            string check = "SELECT COUNT(*) FROM order_book WHERE idBook=@id ";
+            DataTable dt = provider.Select(CommandType.Text, check, new SqlParameter { ParameterName = "@id", Value = id });
+            int result = (int)dt.Rows[0][0];
+
+            string checks = "SELECT COUNT(*) FROM receipt_detail WHERE idBook=@id ";
+            DataTable dts = provider.Select(CommandType.Text, checks, new SqlParameter { ParameterName = "@id", Value = id });
+            int results = (int)dts.Rows[0][0];
+            if (result == 0 && results == 0)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
         public int removeBook(int id)
         {
             int nRow = 0;
@@ -192,10 +213,8 @@ namespace ManageBook.DAO
             try
             {
                 provider.Connect();
-                string check = "SELECT COUNT(*) FROM order_book WHERE idBook=@id ";
-                DataTable dt = provider.Select(CommandType.Text, check, new SqlParameter { ParameterName = "@id", Value = id });
-                int result =  (int)dt.Rows[0][0];
-                if(result == 0) {
+                
+                if(checkConditionDelete(id)) {
                     string strSql = "DELETE FROM books WHERE id = @id";
                     nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
                                 new SqlParameter { ParameterName = "@id", Value = id }
