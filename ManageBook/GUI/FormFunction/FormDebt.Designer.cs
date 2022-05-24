@@ -53,6 +53,7 @@ namespace ManageBook.GUI.FormFunction
             this.luKhachHang.Name = "luKhachHang";
             this.luKhachHang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luKhachHang.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.luKhachHang.Size = new System.Drawing.Size(185, 20);
             this.luKhachHang.TabIndex = 66;
             // 

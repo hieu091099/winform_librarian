@@ -49,6 +49,7 @@ namespace ManageBook.GUI.FormFunction
             this.luSach.Name = "luSach";
             this.luSach.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luSach.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.luSach.Size = new System.Drawing.Size(216, 20);
             this.luSach.TabIndex = 66;
             this.luSach.EditValueChanged += new System.EventHandler(this.luSach_EditValueChanged);

@@ -41,7 +41,7 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             provider.Connect();
 
-            string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+            string checkTonKho = "SELECT CONVERT(INT,SUM(totalQuantity) - SUM(sold)) [Ton] FROM warehouse WHERE idBook = @idBook";
             DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
             int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
 

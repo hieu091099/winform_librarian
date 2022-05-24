@@ -71,7 +71,7 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             provider.Connect();
 
-            string checkTonKho = "SELECT SUM(totalQuantity) - SUM(sold) [Ton] FROM warehouse WHERE idBook = @idBook";
+            string checkTonKho = "SELECT CONVERT(INT,SUM(totalQuantity) - SUM(sold)) [Ton] FROM warehouse WHERE idBook = @idBook";
             DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
             int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
             string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=2";
@@ -100,7 +100,7 @@ namespace ManageBook.DAO
                 provider.Connect();
                 // check quy định tồn kho
                
-                if (checkRegulartion(b) == true)
+                if (checkRegulartion(b))
                 {
 
                     string strSql = "INSERT INTO order_book ( idBook, quantity, price, supplier, userId, dateOrder, dateModify) " +
