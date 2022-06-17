@@ -35,7 +35,7 @@ namespace ManageBook.GUI.FormFunction
         private void FormReceiptDetail_Load(object sender, EventArgs e)
         {
             BookBUS bus = new BookBUS();
-            DataTable dt = bus.getAllBooks();
+            DataTable dt = bus.getBookInWareHouse();
             dt.Columns.Remove("image");
             dt.Columns.Remove("kind");
             dt.Columns.Remove("author");

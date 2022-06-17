@@ -22,6 +22,18 @@ namespace ManageBook.BUS
                 throw ex;
             }
         }
+        public DataTable getBookInWareHouse()
+        {
+            try
+            {
+                BookDAO b = new BookDAO();
+                return b.getBookInWareHouse();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable reportBook()
         {
             try

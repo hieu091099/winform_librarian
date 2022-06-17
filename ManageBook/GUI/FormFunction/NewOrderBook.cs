@@ -172,6 +172,10 @@ namespace ManageBook.GUI.FormFunction
                         MessageBox.Show("Cập nhật thành công!");
                         this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Vi Phạm Quy Định Nhập Sách!");
+                    }
                 }
                 
 

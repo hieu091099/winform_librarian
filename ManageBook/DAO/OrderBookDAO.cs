@@ -69,26 +69,70 @@ namespace ManageBook.DAO
         public bool checkRegulartion(OrderBookDTO b)
         {
             Provider provider = new Provider();
-            provider.Connect();
+            try
+            {
+                provider.Connect();
 
-            string checkTonKho = "SELECT CONVERT(INT,SUM(totalQuantity) - SUM(sold)) [Ton] FROM warehouse WHERE idBook = @idBook";
-            DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
-            int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
-            string sqlTonKhoQuyDinh = "SELECT value FROM regulartion WHERE id=2";
-            DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
-            int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
-            // check quy dinh so luong sach nhap it nhat
-            string sqlLuongSachNhapItNhat = "SELECT value FROM regulartion WHERE id=1";
-            DataTable dtLuongSachNhap = provider.Select(CommandType.Text, sqlLuongSachNhapItNhat);
-            int luongSachNhap = dtLuongSachNhap.Rows[0].Field<int>("value");
-            if (tonKho <= tonKhoQuyDinh && b.Quantity >= luongSachNhap)
-            {
-                return true;
+                string checkTonKho = "SELECT  CASE WHEN   CONVERT(INT,SUM(totalQuantity) - SUM(sold))  IS NOT NULL THEN CONVERT(INT,SUM(totalQuantity) - SUM(sold)) ELSE 0 END [Ton]   FROM warehouse WHERE idBook = @idBook";
+                DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+                int tonKho = dtTonKho.Rows[0].Field<int>("Ton") != null ? dtTonKho.Rows[0].Field<int>("Ton") : 0;
+                string sqlTonKhoQuyDinh = "SELECT value, status FROM regulartion WHERE id=2";
+                DataTable dtTonKhoQuyDinh = provider.Select(CommandType.Text, sqlTonKhoQuyDinh);
+                int tonKhoQuyDinh = dtTonKhoQuyDinh.Rows[0].Field<int>("value");
+                bool status = dtTonKhoQuyDinh.Rows[0].Field<bool>("status");
+                // check quy dinh so luong sach nhap it nhat
+                string sqlLuongSachNhapItNhat = "SELECT value, status FROM regulartion WHERE id=1";
+                DataTable dtLuongSachNhap = provider.Select(CommandType.Text, sqlLuongSachNhapItNhat);
+                int luongSachNhap = dtLuongSachNhap.Rows[0].Field<int>("value");
+                bool status1 = dtLuongSachNhap.Rows[0].Field<bool>("status");
+
+                if(status == true && status1 == true)
+                {
+                    if (tonKho <= tonKhoQuyDinh && b.Quantity >= luongSachNhap)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if(status == false && status1 == true)
+                {
+                    if(b.Quantity >= luongSachNhap)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }else if(status == true && status1 == false)
+                {
+                    if (tonKho <= tonKhoQuyDinh )
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return false;
+                throw ex;
             }
+            finally
+            {
+                provider.DisConnect();
+            }
+           
+           
         }
         public int insert(OrderBookDTO b)
         {
@@ -99,7 +143,6 @@ namespace ManageBook.DAO
             {
                 provider.Connect();
                 // check quy định tồn kho
-               
                 if (checkRegulartion(b))
                 {
 
@@ -125,6 +168,7 @@ namespace ManageBook.DAO
                 {
                     nRowWareHouse = 0;
                 }
+               
             }
             catch (Exception ex)
             {
@@ -143,23 +187,30 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "UPDATE order_book SET  quantity = @quantity, price = @price, supplier = @supplier " +
+                if (checkRegulartion(b))
+                {
+                    string strSql = "UPDATE order_book SET  quantity = @quantity, price = @price, supplier = @supplier " +
                     ", userId = @userId,  dateModify = getdate() WHERE id = @id";
-                string updateWareHouse = "UPDATE warehouse SET totalQuantity = @quantity WHERE idOrder = @id";
-                provider.Connect();
-                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                            new SqlParameter { ParameterName = "@id", Value = b.Id },
-                            new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
-                            new SqlParameter { ParameterName = "@price", Value = b.Price },
-                            new SqlParameter { ParameterName = "@userId", Value = Common.CurrentUserId },
-                            new SqlParameter { ParameterName = "@supplier", Value = b.Supplier }
-                            
-                            
-                    );
-                nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, updateWareHouse,
-                           new SqlParameter { ParameterName = "@id", Value = b.Id },
-                           new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
-                   );
+                    string updateWareHouse = "UPDATE warehouse SET totalQuantity = @quantity WHERE idOrder = @id";
+                    provider.Connect();
+                    nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                                new SqlParameter { ParameterName = "@id", Value = b.Id },
+                                new SqlParameter { ParameterName = "@quantity", Value = b.Quantity },
+                                new SqlParameter { ParameterName = "@price", Value = b.Price },
+                                new SqlParameter { ParameterName = "@userId", Value = Common.CurrentUserId },
+                                new SqlParameter { ParameterName = "@supplier", Value = b.Supplier }
+
+
+                        );
+                    nRowWareHouse = provider.ExecuteNonQuery(CommandType.Text, updateWareHouse,
+                               new SqlParameter { ParameterName = "@id", Value = b.Id },
+                               new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
+                       );
+                }
+                else
+                {
+                    nRowWareHouse = 0;
+                }
             }
             catch (Exception ex)
             {

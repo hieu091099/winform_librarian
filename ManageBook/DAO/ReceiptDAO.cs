@@ -113,24 +113,43 @@ namespace ManageBook.DAO
         public bool checkRegulartionCustomer(ReceiptDTO b)
         {
             Provider provider = new Provider();
-            provider.Connect();
+            try {
+                provider.Connect();
 
-            string sqlNoKhachHang = "SELECT CONVERT(INT,SUM(b.price * b.quantity)) [total]  FROM receipt a LEFT JOIN receipt_detail b ON a.id = b.idReceipt WHERE a.[status] = N'Trả Trước' AND a.idCus =@idCus";
-            DataTable dtNo = provider.Select(CommandType.Text, sqlNoKhachHang, new SqlParameter { ParameterName = "@idCus", Value = b.IdCus });
-            int no = dtNo.Rows[0].Field<int>("total");
+                string sqlNoKhachHang = "SELECT CASE WHEN  CONVERT(INT,SUM(b.price * b.quantity)) IS NOT NULL THEN CONVERT(INT,SUM(b.price * b.quantity)) ELSE 0 END   [total]  FROM receipt a LEFT JOIN receipt_detail b ON a.id = b.idReceipt WHERE a.[status] = N'Trả Trước' AND a.idCus =@idCus";
+                DataTable dtNo = provider.Select(CommandType.Text, sqlNoKhachHang, new SqlParameter { ParameterName = "@idCus", Value = b.IdCus });
+                int no = dtNo.Rows[0].Field<int>("total");
 
 
-            string sqlQuyDinhNo = "SELECT value FROM regulartion WHERE id=3";
-            DataTable dtQuyDinhNo = provider.Select(CommandType.Text, sqlQuyDinhNo);
-            int quyDinhNo = dtQuyDinhNo.Rows[0].Field<int>("value");
+                string sqlQuyDinhNo = "SELECT value, status FROM regulartion WHERE id=3";
+                DataTable dtQuyDinhNo = provider.Select(CommandType.Text, sqlQuyDinhNo);
+                int quyDinhNo = dtQuyDinhNo.Rows[0].Field<int>("value");
+                bool status = dtQuyDinhNo.Rows[0].Field<bool>("status");
 
-            if (no <= quyDinhNo)
-            {
-                return true;
+
+                if (status == true)
+                {
+                    if (no <= quyDinhNo)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return false;
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
             }
         }
 
@@ -210,14 +229,13 @@ namespace ManageBook.DAO
                             new SqlParameter { ParameterName = "@id", Value = id }
 
                     );
-                if(nRowDetail == 1)
-                {
-                    string strSql = "DELETE FROM receipt WHERE id = @id";
-                    nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
-                                new SqlParameter { ParameterName = "@id", Value = id }
+                
+                string strSql = "DELETE FROM receipt WHERE id = @id";
+                nRow = provider.ExecuteNonQuery(CommandType.Text, strSql,
+                            new SqlParameter { ParameterName = "@id", Value = id }
 
-                        );
-                }
+                    );
+                
             }
             catch (Exception ex)
             {

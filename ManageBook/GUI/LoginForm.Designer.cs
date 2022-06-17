@@ -60,6 +60,7 @@ namespace ManageBook.GUI
             // 
             // txtUsername
             // 
+            this.txtUsername.EditValue = "hieu";
             this.txtUsername.Location = new System.Drawing.Point(93, 180);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14F);
@@ -70,6 +71,7 @@ namespace ManageBook.GUI
             // 
             // txtPassword
             // 
+            this.txtPassword.EditValue = "test";
             this.txtPassword.Location = new System.Drawing.Point(93, 227);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14F);

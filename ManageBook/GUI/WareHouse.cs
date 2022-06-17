@@ -30,26 +30,26 @@ namespace ManageBook.GUI
                 WareHouseBUS b = new WareHouseBUS();
                 DataTable dt = b.getAll();
                 dgWarehouse.DataSource = dt;
-                dgWarehouse.Columns[0].HeaderText = "ID";
-                dgWarehouse.Columns[1].HeaderText = "Tên Sách";
-                dgWarehouse.Columns[2].HeaderText = "Tác Giả";
-                dgWarehouse.Columns[3].HeaderText = "Giá";
-                dgWarehouse.Columns[4].HeaderText = "Tổng Số Lượng";
-                dgWarehouse.Columns[5].HeaderText = "Đã Bán";
-                dgWarehouse.Columns[6].HeaderText = "Tồn Kho";
-                dgWarehouse.Columns[7].HeaderText = "Ngày Nhập";
+                
+                dgWarehouse.Columns[0].HeaderText = "Tên Sách";
+                dgWarehouse.Columns[1].HeaderText = "Tác Giả";
+                dgWarehouse.Columns[2].HeaderText = "Giá";
+                dgWarehouse.Columns[3].HeaderText = "Tổng Số Lượng";
+                dgWarehouse.Columns[4].HeaderText = "Đã Bán";
+                dgWarehouse.Columns[5].HeaderText = "Tồn Kho";
+               
               
                 dgWarehouse.Columns["price"].DefaultCellStyle.Format = "N2";
 
 
-                dgWarehouse.Columns[0].Width = 30;
-                dgWarehouse.Columns[1].Width = 300;
-                dgWarehouse.Columns[2].Width = 120;
-                dgWarehouse.Columns[3].Width = 90;
+                
+                dgWarehouse.Columns[0].Width = 300;
+                dgWarehouse.Columns[1].Width = 120;
+                dgWarehouse.Columns[2].Width = 90;
+                dgWarehouse.Columns[3].Width = 60;
                 dgWarehouse.Columns[4].Width = 60;
                 dgWarehouse.Columns[5].Width = 60;
-                dgWarehouse.Columns[6].Width = 60;
-                dgWarehouse.Columns[7].Width = 120;
+                
 
                 
             }

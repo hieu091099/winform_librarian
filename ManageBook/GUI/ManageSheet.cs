@@ -269,14 +269,13 @@ namespace ManageBook.GUI
                 dgOrderBook.Columns[1].HeaderText = "Tên Sách";
                 dgOrderBook.Columns[2].HeaderText = "Tác Giả";
                 dgOrderBook.Columns[3].HeaderText = "Thể Loại";
-                dgOrderBook.Columns[4].HeaderText = "Tên Sách";
-                dgOrderBook.Columns[5].HeaderText = "Số Lượng";
-                dgOrderBook.Columns[6].HeaderText = "Giá";
-                dgOrderBook.Columns[7].HeaderText = "Nhà Cung Ứng";
-                dgOrderBook.Columns[8].HeaderText = "Người Tạo Phiếu";
-                dgOrderBook.Columns[9].HeaderText = "Ngày Tạo Phiếu";
-                dgOrderBook.Columns[10].HeaderText = "Ngày Cập Nhật";
-                dgOrderBook.Columns[11].HeaderText = "IDBook";
+                dgOrderBook.Columns[4].HeaderText = "Số Lượng";
+                dgOrderBook.Columns[5].HeaderText = "Giá";
+                dgOrderBook.Columns[6].HeaderText = "Nhà Cung Ứng";
+                dgOrderBook.Columns[7].HeaderText = "Người Tạo Phiếu";
+                dgOrderBook.Columns[8].HeaderText = "Ngày Tạo Phiếu";
+                dgOrderBook.Columns[9].HeaderText = "Ngày Cập Nhật";
+                dgOrderBook.Columns[10].HeaderText = "IDBook";
                 dgOrderBook.Columns["idBook"].Visible = false;
 
 
@@ -291,6 +290,7 @@ namespace ManageBook.GUI
                 dgOrderBook.Columns[7].Width = 100;
                 dgOrderBook.Columns[8].Width = 120;
                 dgOrderBook.Columns[9].Width = 120;
+                dgOrderBook.Columns[10].Width = 120;
 
 
 

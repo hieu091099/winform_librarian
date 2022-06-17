@@ -16,14 +16,26 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT CONVERT(VARCHAR,a.id) id, b.nameBook,  a.quantity, a.price , a.price * a.quantity 'Total', a.idBook " +
-                    "FROM receipt_detail a LEFT JOIN books b ON a.idBook = b.id " +
-                    "WHERE a.idReceipt = @idReceipt " +
-                    "UNION ALL " +
-                    "SELECT 'Total' id, '' nameBook,  SUM(a.quantity) quantity,  0 price , SUM(a.price * a.quantity) Total, '' idBook " +
-                    "FROM receipt_detail a " +
-                    "WHERE a.idReceipt = @idReceipt";
                 provider.Connect();
+                string checkHaveData = "SELECT count(*) value FROM receipt_detail WHERE idReceipt = @idReceipt ";
+                DataTable dtCheck = provider.Select(CommandType.Text, checkHaveData, new SqlParameter { ParameterName = "@idReceipt", Value = id });
+                int row = dtCheck.Rows[0].Field<int>("value");
+                string strSql = "";
+                if (row > 0)
+                {
+                     strSql = "SELECT CONVERT(VARCHAR,a.id) id, b.nameBook,  a.quantity, a.price , a.price * a.quantity 'Total', a.idBook " +
+                        "FROM receipt_detail a LEFT JOIN books b ON a.idBook = b.id " +
+                        "WHERE a.idReceipt = @idReceipt " +
+                        "UNION ALL " +
+                        "SELECT 'Total' id, '' nameBook,  SUM(a.quantity) quantity,  0 price , SUM(a.price * a.quantity) Total, '' idBook " +
+                        "FROM receipt_detail a " +
+                        "WHERE a.idReceipt = @idReceipt";
+                }
+                else
+                {
+                    strSql = "SELECT id, '' nameBook,  quantity,  price, '' Total, rd.idBook FROM receipt_detail AS rd WHERE idReceipt = @idReceipt";
+                }
+                
                 DataTable dt = provider.Select(CommandType.Text, strSql, new SqlParameter { ParameterName = "@idReceipt", Value = id});
                 return dt;
             }
@@ -41,7 +53,9 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             provider.Connect();
 
-            string checkTonKho = "SELECT CONVERT(INT,SUM(totalQuantity) - SUM(sold)) [Ton] FROM warehouse WHERE idBook = @idBook";
+            string checkTonKho = @"SELECT CONVERT(INT,SUM(a.totalQuantity) -  (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c WHERE c.idBook = a.idBook)) [Ton] 
+                                    FROM warehouse a WHERE a.idBook = 1
+                                    GROUP BY a.idBook";
             DataTable dtTonKho = provider.Select(CommandType.Text, checkTonKho, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
             int tonKho = dtTonKho.Rows[0].Field<int>("Ton");
 
@@ -70,8 +84,6 @@ namespace ManageBook.DAO
             {
 
                 provider.Connect();
-
-
                if(checkRegulartion(b))
                 {
                     string strSql = "INSERT INTO receipt_detail (idReceipt, idBook, price, quantity) VALUES " +
@@ -83,16 +95,16 @@ namespace ManageBook.DAO
                                 new SqlParameter { ParameterName = "@price", Value = b.Price },
                                 new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
                         );
-                    string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE idBook = @idBook AND totalQuantity >= sold ORDER BY dateImport ASC";
-                    DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
-                    int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
-                    int idRW = dt.Rows[0].Field<int>("id");
+                    //string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE idBook = @idBook AND totalQuantity >= sold ORDER BY dateImport ASC";
+                    //DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@idBook", Value = b.IdBook });
+                    //int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
+                    //int idRW = dt.Rows[0].Field<int>("id");
 
-                    string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
-                    int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
-                                new SqlParameter { ParameterName = "@id", Value = idRW },
-                                new SqlParameter { ParameterName = "@quantity", Value = quantity }
-                        );
+                    //string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
+                    //int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
+                    //            new SqlParameter { ParameterName = "@id", Value = idRW },
+                    //            new SqlParameter { ParameterName = "@quantity", Value = quantity }
+                    //    );
                 }
                 else
                 {
@@ -125,16 +137,16 @@ namespace ManageBook.DAO
                             new SqlParameter { ParameterName = "@quantity", Value = b.Quantity }
 
                     );
-                string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE id = @id AND totalQuantity >= sold ORDER BY dateImport ASC";
-                DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@id", Value = b.Id });
-                int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
-                int idRW = dt.Rows[0].Field<int>("id");
+                //string strSqlGetSold = "SELECT sold, id  FROM warehouse WHERE id = @id AND totalQuantity >= sold ORDER BY dateImport ASC";
+                //DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@id", Value = b.Id });
+                //int quantity = dt.Rows[0].Field<int>("sold") + b.Quantity;
+                //int idRW = dt.Rows[0].Field<int>("id");
 
-                string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
-                int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
-                            new SqlParameter { ParameterName = "@id", Value = idRW },
-                            new SqlParameter { ParameterName = "@quantity", Value = quantity }
-                    );
+                //string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = @quantity WHERE id = @id ";
+                //int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
+                //            new SqlParameter { ParameterName = "@id", Value = idRW },
+                //            new SqlParameter { ParameterName = "@quantity", Value = quantity }
+                //    );
 
             }
             catch (Exception ex)
@@ -154,18 +166,18 @@ namespace ManageBook.DAO
             try
             {
                 provider.Connect();
-                string strSqlGetSold = "SELECT quantity, idBook  FROM receipt_detail WHERE id = @id ";
-                DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@id", Value = id });
-                int quantity = dt.Rows[0].Field<int>("quantity");
-                int idBook = dt.Rows[0].Field<int>("idBook");
+                //string strSqlGetSold = "SELECT quantity, idBook  FROM receipt_detail WHERE id = @id ";
+                //DataTable dt = provider.Select(CommandType.Text, strSqlGetSold, new SqlParameter { ParameterName = "@id", Value = id });
+                //int quantity = dt.Rows[0].Field<int>("quantity");
+                //int idBook = dt.Rows[0].Field<int>("idBook");
 
 
 
-                string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = sold - @quantity WHERE id = (SELECT TOP 1 id FROM warehouse WHERE idBook = @idBook ORDER BY warehouse.dateImport asc) ";
-                int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
-                            new SqlParameter { ParameterName = "@idBook", Value = idBook },
-                            new SqlParameter { ParameterName = "@quantity", Value = quantity }
-                    );
+                //string strSqlUpdateWareHouse = "UPDATE warehouse SET sold = sold - @quantity WHERE id = (SELECT TOP 1 id FROM warehouse WHERE idBook = @idBook ORDER BY warehouse.dateImport asc) ";
+                //int nRowW = provider.ExecuteNonQuery(CommandType.Text, strSqlUpdateWareHouse,
+                //            new SqlParameter { ParameterName = "@idBook", Value = idBook },
+                //            new SqlParameter { ParameterName = "@quantity", Value = quantity }
+                //    );
 
                 string strSql = "DELETE FROM receipt_detail WHERE id = @id";
                 

@@ -30,6 +30,26 @@ namespace ManageBook.DAO
                 provider.DisConnect();
             }
         }
+        public DataTable getBookInWareHouse()
+        {
+            Provider provider = new Provider();
+            try
+            {
+                string strSql = "SELECT a.* FROM books a, warehouse b WHERE a.id = b.idBook";
+                provider.Connect();
+                DataTable dt = provider.Select(CommandType.Text, strSql);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                provider.DisConnect();
+            }
+        }
         public DataTable reportBook()
         {
             Provider provider = new Provider();

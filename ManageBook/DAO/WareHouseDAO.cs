@@ -14,7 +14,11 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT a.id, b.nameBook, b.author, b.price, a.totalQuantity, a.sold, a.totalQuantity - a.sold [else], a.dateImport  FROM warehouse a LEFT JOIN books b ON a.idBook = b.id  ";
+                string strSql = @"SELECT b.nameBook, b.author, b.price,SUM(a.totalQuantity) totalQuantity,
+                                 (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c WHERE c.idBook = a.idBook) sold, 
+                                SUM(a.totalQuantity) - (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c WHERE c.idBook = a.idBook) [else]
+                                FROM warehouse a LEFT JOIN books b ON a.idBook = b.id
+                                GROUP BY  b.nameBook, b.author, b.price, a.idBook, a.totalQuantity ";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
@@ -34,8 +38,11 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT a.id, b.nameBook,b.author, b.price, a.totalQuantity, a.sold, a.totalQuantity - a.sold [else], a.dateImport  FROM warehouse a LEFT JOIN books b ON a.idBook = b.id WHERE 1=1 ";
-                if(tenSach != "")
+                string strSql = @"SELECT b.nameBook, b.author, b.price,SUM(a.totalQuantity) totalQuantity,
+                                 (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c WHERE c.idBook = a.idBook) sold, 
+                                SUM(a.totalQuantity) - (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c WHERE c.idBook = a.idBook) [else]
+                                FROM warehouse a LEFT JOIN books b ON a.idBook = b.id WHERE  1=1 ";
+                if (tenSach != "")
                 {
                     strSql += $" AND b.nameBook LIKE N'%{tenSach}%'";
                 }
@@ -50,7 +57,7 @@ namespace ManageBook.DAO
 
                     strSql += $" AND a.dateImport BETWEEN '{dateFrom.ToString("yyyyMMdd")}' AND '{dateTo.ToString("yyyyMMdd")}'";
                 }
-                
+                strSql += "GROUP BY  b.nameBook, b.author, b.price, a.idBook, a.totalQuantity ";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;
