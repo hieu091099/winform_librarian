@@ -68,29 +68,29 @@ namespace ManageBook.DAO
             try
             {
                 provider.Connect();
-                string sqlGetIdCus = "SELECT idCus, debtMoney FROM debt_sheet WHERE id = @id";
-                DataTable dt = provider.Select(CommandType.Text, sqlGetIdCus, new SqlParameter { ParameterName = "@id", Value = id });
-                int idCus = dt.Rows[0].Field<int>("idCus");
-                double debtMoney = dt.Rows[0].Field<double>("debtMoney");
+                //string sqlGetIdCus = "SELECT idCus, debtMoney FROM debt_sheet WHERE id = @id";
+                //DataTable dt = provider.Select(CommandType.Text, sqlGetIdCus, new SqlParameter { ParameterName = "@id", Value = id });
+                //int idCus = dt.Rows[0].Field<int>("idCus");
+                //double debtMoney = dt.Rows[0].Field<double>("debtMoney");
 
 
-                string sqlGetTotalDebt = " SELECT a.id, a.idCus, a.payCus, SUM(b.price * b.quantity) [total] FROM receipt a LEFT JOIN receipt_detail b ON b.idReceipt = a.id WHERE idCus = @idCus GROUP BY a.id, a.idCus, a.payCus";
-                DataTable dts = provider.Select(CommandType.Text, sqlGetTotalDebt, new SqlParameter { ParameterName = "@idCus", Value = idCus });
-                foreach (DataRow row in dts.Rows)
-                {
-                    if (Convert.ToDouble(row["total"].ToString()) < debtMoney){
-                        string update = "update receipt set status = N'Hoàn Tất' where id = @id";
-                        provider.ExecuteNonQuery(CommandType.Text, update,
-                            new SqlParameter { ParameterName = "@id", Value = Int32.Parse(row["id"].ToString()) });
-                        debtMoney = debtMoney - Convert.ToDouble(row["total"].ToString());
-                    }
-                    else
-                    {
-                        string update = "update receipt set payCus = payCus + @money where id = @id";
-                        provider.ExecuteNonQuery(CommandType.Text, update,
-                            new SqlParameter { ParameterName = "@money", Value = debtMoney });
-                    }
-                }
+                //string sqlGetTotalDebt = " SELECT a.id, a.idCus, a.payCus, SUM(b.price * b.quantity) [total] FROM receipt a LEFT JOIN receipt_detail b ON b.idReceipt = a.id WHERE idCus = @idCus GROUP BY a.id, a.idCus, a.payCus";
+                //DataTable dts = provider.Select(CommandType.Text, sqlGetTotalDebt, new SqlParameter { ParameterName = "@idCus", Value = idCus });
+                //foreach (DataRow row in dts.Rows)
+                //{
+                //    if (Convert.ToDouble(row["total"].ToString()) < debtMoney){
+                //        string update = "update receipt set status = N'Hoàn Tất' where id = @id";
+                //        provider.ExecuteNonQuery(CommandType.Text, update,
+                //            new SqlParameter { ParameterName = "@id", Value = Int32.Parse(row["id"].ToString()) });
+                //        debtMoney = debtMoney - Convert.ToDouble(row["total"].ToString());
+                //    }
+                //    else
+                //    {
+                //        string update = "update receipt set payCus = payCus + @money where id = @id";
+                //        provider.ExecuteNonQuery(CommandType.Text, update,
+                //            new SqlParameter { ParameterName = "@money", Value = debtMoney });
+                //    }
+                //}
 
                 string strSql = "UPDATE debt_sheet SET status = N'Hoàn Tất' WHERE id = @id";
                 provider.Connect();

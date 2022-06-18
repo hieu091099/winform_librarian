@@ -298,9 +298,9 @@ namespace ManageBook.GUI
             this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.dgSheetOwn);
-            this.groupBox2.Location = new System.Drawing.Point(649, 94);
+            this.groupBox2.Location = new System.Drawing.Point(562, 94);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(306, 547);
+            this.groupBox2.Size = new System.Drawing.Size(393, 547);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phiếu Nợ";
@@ -343,7 +343,7 @@ namespace ManageBook.GUI
             this.dgSheetOwn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSheetOwn.Location = new System.Drawing.Point(6, 49);
             this.dgSheetOwn.Name = "dgSheetOwn";
-            this.dgSheetOwn.Size = new System.Drawing.Size(294, 485);
+            this.dgSheetOwn.Size = new System.Drawing.Size(381, 485);
             this.dgSheetOwn.TabIndex = 0;
             this.dgSheetOwn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSheetOwn_CellClick);
             // 
@@ -352,7 +352,7 @@ namespace ManageBook.GUI
             this.groupBox1.Controls.Add(this.dgOwn);
             this.groupBox1.Location = new System.Drawing.Point(3, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(640, 540);
+            this.groupBox1.Size = new System.Drawing.Size(553, 540);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DS Khách Hàng Đang Nợ";
@@ -362,7 +362,7 @@ namespace ManageBook.GUI
             this.dgOwn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOwn.Location = new System.Drawing.Point(6, 20);
             this.dgOwn.Name = "dgOwn";
-            this.dgOwn.Size = new System.Drawing.Size(628, 514);
+            this.dgOwn.Size = new System.Drawing.Size(543, 514);
             this.dgOwn.TabIndex = 0;
             this.dgOwn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOwn_CellClick);
             // 

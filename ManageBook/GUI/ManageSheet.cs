@@ -130,21 +130,23 @@ namespace ManageBook.GUI
             DebtBUS b = new DebtBUS();
             DataTable dt = b.getAll(idCus);
             dgSheetOwn.DataSource = dt;
+            dgSheetOwn.Columns[0].HeaderText = "id";
+            dgSheetOwn.Columns[1].HeaderText = "Số Tiền Thu";
+            dgSheetOwn.Columns[2].HeaderText = "Ngày Thu";
+            dgSheetOwn.Columns[3].HeaderText = "Trạng Thái";
+            dgSheetOwn.Columns[4].HeaderText = "Người Tạo Phiếu";
+            dgSheetOwn.Columns[5].HeaderText = "Ngày Tạo";
             dgSheetOwn.Columns["id"].Visible = false;
-            dgSheetOwn.Columns[0].HeaderText = "Số Tiền Thu";
-            dgSheetOwn.Columns[1].HeaderText = "Ngày Thu";
-            dgSheetOwn.Columns[2].HeaderText = "Trạng Thái";
-            dgSheetOwn.Columns[3].HeaderText = "Người Tạo Phiếu";
-            dgSheetOwn.Columns[4].HeaderText = "Ngày Tạo";
-            
             dgSheetOwn.Columns["debtMoney"].DefaultCellStyle.Format = "N2";
 
 
             dgSheetOwn.Columns[0].Width = 90;
             dgSheetOwn.Columns[1].Width = 100;
-            dgSheetOwn.Columns[2].Width = 60;
+            dgSheetOwn.Columns[2].Width = 100;
             dgSheetOwn.Columns[3].Width = 100;
             dgSheetOwn.Columns[4].Width = 100;
+            dgSheetOwn.Columns[5].Width = 100;
+
 
             if (dt.Rows.Count > 0)
             {

@@ -33,6 +33,7 @@ namespace ManageBook.GUI
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCreateReportBook = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.deDateToBook = new DevExpress.XtraEditors.DateEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -45,6 +46,7 @@ namespace ManageBook.GUI
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCreateReportDebt = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.deDateToDebt = new DevExpress.XtraEditors.DateEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -55,8 +57,6 @@ namespace ManageBook.GUI
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtTenKhachHang = new System.Windows.Forms.TextBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnCreateReportBook = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCreateReportDebt = new DevExpress.XtraEditors.SimpleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -123,6 +123,16 @@ namespace ManageBook.GUI
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // btnCreateReportBook
+            // 
+            this.btnCreateReportBook.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreateReportBook.ImageOptions.SvgImage")));
+            this.btnCreateReportBook.Location = new System.Drawing.Point(772, 47);
+            this.btnCreateReportBook.Name = "btnCreateReportBook";
+            this.btnCreateReportBook.Size = new System.Drawing.Size(104, 30);
+            this.btnCreateReportBook.TabIndex = 29;
+            this.btnCreateReportBook.Text = "Tạo Báo Cáo";
+            this.btnCreateReportBook.Click += new System.EventHandler(this.btnCreateReportBook_Click);
+            // 
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(461, 55);
@@ -173,6 +183,8 @@ namespace ManageBook.GUI
             // 
             // dgReportBook
             // 
+            this.dgReportBook.AllowUserToAddRows = false;
+            this.dgReportBook.AllowUserToDeleteRows = false;
             this.dgReportBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgReportBook.Location = new System.Drawing.Point(3, 3);
             this.dgReportBook.Name = "dgReportBook";
@@ -243,6 +255,16 @@ namespace ManageBook.GUI
             this.panel2.Size = new System.Drawing.Size(958, 637);
             this.panel2.TabIndex = 0;
             // 
+            // btnCreateReportDebt
+            // 
+            this.btnCreateReportDebt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreateReportDebt.ImageOptions.SvgImage")));
+            this.btnCreateReportDebt.Location = new System.Drawing.Point(807, 39);
+            this.btnCreateReportDebt.Name = "btnCreateReportDebt";
+            this.btnCreateReportDebt.Size = new System.Drawing.Size(104, 30);
+            this.btnCreateReportDebt.TabIndex = 37;
+            this.btnCreateReportDebt.Text = "Tạo Báo Cáo";
+            this.btnCreateReportDebt.Click += new System.EventHandler(this.btnCreateReportDebt_Click);
+            // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(492, 46);
@@ -293,6 +315,8 @@ namespace ManageBook.GUI
             // 
             // dgCongNo
             // 
+            this.dgCongNo.AllowUserToAddRows = false;
+            this.dgCongNo.AllowUserToDeleteRows = false;
             this.dgCongNo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCongNo.Location = new System.Drawing.Point(3, 3);
             this.dgCongNo.Name = "dgCongNo";
@@ -335,26 +359,6 @@ namespace ManageBook.GUI
             this.labelControl1.Size = new System.Drawing.Size(171, 27);
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Báo Cáo Công Nợ";
-            // 
-            // btnCreateReportBook
-            // 
-            this.btnCreateReportBook.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage1")));
-            this.btnCreateReportBook.Location = new System.Drawing.Point(772, 47);
-            this.btnCreateReportBook.Name = "btnCreateReportBook";
-            this.btnCreateReportBook.Size = new System.Drawing.Size(104, 30);
-            this.btnCreateReportBook.TabIndex = 29;
-            this.btnCreateReportBook.Text = "Tạo Báo Cáo";
-            this.btnCreateReportBook.Click += new System.EventHandler(this.btnCreateReportBook_Click);
-            // 
-            // btnCreateReportDebt
-            // 
-            this.btnCreateReportDebt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.btnCreateReportDebt.Location = new System.Drawing.Point(807, 39);
-            this.btnCreateReportDebt.Name = "btnCreateReportDebt";
-            this.btnCreateReportDebt.Size = new System.Drawing.Size(104, 30);
-            this.btnCreateReportDebt.TabIndex = 37;
-            this.btnCreateReportDebt.Text = "Tạo Báo Cáo";
-            this.btnCreateReportDebt.Click += new System.EventHandler(this.btnCreateReportDebt_Click);
             // 
             // Report
             // 

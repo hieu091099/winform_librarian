@@ -121,9 +121,9 @@ namespace ManageBook.GUI
                 dgReceiptDetail.Columns[4].HeaderText = "Tổng Tiền";
                 dgReceiptDetail.Columns["idBook"].Visible = false;
                 dgReceiptDetail.Columns["price"].DefaultCellStyle.Format = "N2";
-                //dgReceiptDetail.Columns["Total"].DefaultCellStyle.Format = "N2";
+                dgReceiptDetail.Columns["Total"].DefaultCellStyle.Format = "N2";
 
-                
+
 
 
 

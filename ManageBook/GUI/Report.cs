@@ -228,5 +228,11 @@ namespace ManageBook.GUI
                 ToExcel(dgCongNo, saveFileDialog1.FileName, "Báo Cáo Công Nợ");
             }
         }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+            ReportDebt f = new ReportDebt();
+            f.ShowDialog();
+        }
     }
 }

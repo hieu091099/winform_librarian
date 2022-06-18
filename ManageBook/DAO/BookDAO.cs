@@ -55,6 +55,17 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
+                //IF OBJECT_ID(N'Tempdb..#tempB') IS NOT  NULL DROP TABLE #tempB
+                //SELECT b.id, a.totalQuantity
+                //, (SELECT CASE WHEN  SUM(c.quantity) IS NOT NULL THEN SUM(c.quantity) ELSE 0 END value FROM receipt_detail c, receipt d WHERE c.idBook = a.idBook AND c.idReceipt = d.id AND d.dateReceipt >= a.dateImport ) sold, a.dateImport
+                //INTO #tempB 
+                //FROM warehouse a
+                //LEFT JOIN books b ON a.idBook = b.id
+                //GROUP BY b.id, a.totalQuantity, a.sold, a.dateImport, a.idBook
+                //SELECT a.id, b.nameBook, b.author, b.kind, (SELECT TOP 1(d.totalQuantity - d.sold) FROM #tempB d WHERE a.id = d.id ORDER BY d.dateImport ASC) TonDau, SUM(a.totalQuantity - a.sold ) - (SELECT TOP 1(d.totalQuantity - d.sold) FROM #tempB d WHERE a.id = d.id ORDER BY d.dateImport ASC)  PhatSinh
+                //,SUM(a.totalQuantity - a.sold) TonCuoi
+                //FROM #tempB a LEFT JOIN books AS b ON a.id = b.id
+                //GROUP BY a.id, b.nameBook, b.author, b.kind
                 string strSql = "IF OBJECT_ID(N'Tempdb..#tempA') IS NOT  NULL  DROP TABLE #tempA SELECT b.id, a.totalQuantity, a.sold, a.dateImport INTO #tempA FROM warehouse a LEFT JOIN books b ON a.idBook = b.id GROUP BY b.id, a.totalQuantity, a.sold, a.dateImport SELECT b.id, b.nameBook, b.author, b.kind, (SELECT TOP 1 totalQuantity - sold FROM #tempA WHERE id = a.idBook ORDER BY dateImport ASC ) [TonDau] ,SUM(a.totalQuantity - a.sold) - (SELECT TOP 1 totalQuantity - sold FROM #tempA WHERE id = a.idBook ORDER BY dateImport ASC ) [PhatSinh] ,SUM(a.totalQuantity - a.sold)[TonCuoi]  FROM warehouse a LEFT JOIN books b ON a.idBook = b.id GROUP BY b.id, b.nameBook, a.idBook, b.author, b.kind";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
