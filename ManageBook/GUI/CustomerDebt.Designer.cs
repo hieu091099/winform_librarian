@@ -50,6 +50,8 @@ namespace ManageBook.GUI
             // 
             // dgCustomer
             // 
+            this.dgCustomer.AllowUserToAddRows = false;
+            this.dgCustomer.AllowUserToDeleteRows = false;
             this.dgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCustomer.Location = new System.Drawing.Point(3, 3);
             this.dgCustomer.Name = "dgCustomer";

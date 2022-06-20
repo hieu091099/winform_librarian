@@ -41,10 +41,10 @@ namespace ManageBook.GUI
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtDiaChi = new System.Windows.Forms.GroupBox();
-            this.cboLoaiQuyDinh = new System.Windows.Forms.ComboBox();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.rbSuDung = new System.Windows.Forms.RadioButton();
             this.rbKhongSuDung = new System.Windows.Forms.RadioButton();
+            this.rbSuDung = new System.Windows.Forms.RadioButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiQuyDinh = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgQuyDinh)).BeginInit();
             this.txtDiaChi.SuspendLayout();
@@ -67,6 +67,8 @@ namespace ManageBook.GUI
             // 
             // dgQuyDinh
             // 
+            this.dgQuyDinh.AllowUserToAddRows = false;
+            this.dgQuyDinh.AllowUserToDeleteRows = false;
             this.dgQuyDinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgQuyDinh.Location = new System.Drawing.Point(3, 159);
             this.dgQuyDinh.Name = "dgQuyDinh";
@@ -151,25 +153,16 @@ namespace ManageBook.GUI
             this.txtDiaChi.TabStop = false;
             this.txtDiaChi.Text = "Thông Tin";
             // 
-            // cboLoaiQuyDinh
+            // rbKhongSuDung
             // 
-            this.cboLoaiQuyDinh.Enabled = false;
-            this.cboLoaiQuyDinh.FormattingEnabled = true;
-            this.cboLoaiQuyDinh.Items.AddRange(new object[] {
-            "Nhập Sách",
-            "Bán Sách"});
-            this.cboLoaiQuyDinh.Location = new System.Drawing.Point(791, 31);
-            this.cboLoaiQuyDinh.Name = "cboLoaiQuyDinh";
-            this.cboLoaiQuyDinh.Size = new System.Drawing.Size(108, 21);
-            this.cboLoaiQuyDinh.TabIndex = 20;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(442, 34);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(55, 13);
-            this.labelControl3.TabIndex = 21;
-            this.labelControl3.Text = "Trạng Thái:";
+            this.rbKhongSuDung.AutoSize = true;
+            this.rbKhongSuDung.Location = new System.Drawing.Point(580, 32);
+            this.rbKhongSuDung.Name = "rbKhongSuDung";
+            this.rbKhongSuDung.Size = new System.Drawing.Size(99, 17);
+            this.rbKhongSuDung.TabIndex = 23;
+            this.rbKhongSuDung.TabStop = true;
+            this.rbKhongSuDung.Text = "Không Sử Dụng";
+            this.rbKhongSuDung.UseVisualStyleBackColor = true;
             // 
             // rbSuDung
             // 
@@ -182,16 +175,25 @@ namespace ManageBook.GUI
             this.rbSuDung.Text = "Sử dụng";
             this.rbSuDung.UseVisualStyleBackColor = true;
             // 
-            // rbKhongSuDung
+            // labelControl3
             // 
-            this.rbKhongSuDung.AutoSize = true;
-            this.rbKhongSuDung.Location = new System.Drawing.Point(580, 32);
-            this.rbKhongSuDung.Name = "rbKhongSuDung";
-            this.rbKhongSuDung.Size = new System.Drawing.Size(99, 17);
-            this.rbKhongSuDung.TabIndex = 23;
-            this.rbKhongSuDung.TabStop = true;
-            this.rbKhongSuDung.Text = "Không Sử Dụng";
-            this.rbKhongSuDung.UseVisualStyleBackColor = true;
+            this.labelControl3.Location = new System.Drawing.Point(442, 34);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(55, 13);
+            this.labelControl3.TabIndex = 21;
+            this.labelControl3.Text = "Trạng Thái:";
+            // 
+            // cboLoaiQuyDinh
+            // 
+            this.cboLoaiQuyDinh.Enabled = false;
+            this.cboLoaiQuyDinh.FormattingEnabled = true;
+            this.cboLoaiQuyDinh.Items.AddRange(new object[] {
+            "Nhập Sách",
+            "Bán Sách"});
+            this.cboLoaiQuyDinh.Location = new System.Drawing.Point(791, 31);
+            this.cboLoaiQuyDinh.Name = "cboLoaiQuyDinh";
+            this.cboLoaiQuyDinh.Size = new System.Drawing.Size(108, 21);
+            this.cboLoaiQuyDinh.TabIndex = 20;
             // 
             // Regulartion
             // 

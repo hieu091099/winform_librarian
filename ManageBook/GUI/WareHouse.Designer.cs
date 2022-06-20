@@ -162,6 +162,8 @@ namespace ManageBook.GUI
             // 
             // dgWarehouse
             // 
+            this.dgWarehouse.AllowUserToAddRows = false;
+            this.dgWarehouse.AllowUserToDeleteRows = false;
             this.dgWarehouse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgWarehouse.Location = new System.Drawing.Point(3, 148);
             this.dgWarehouse.Name = "dgWarehouse";

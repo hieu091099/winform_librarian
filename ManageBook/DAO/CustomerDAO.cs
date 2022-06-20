@@ -148,7 +148,12 @@ namespace ManageBook.DAO
             Provider provider = new Provider();
             try
             {
-                string strSql = "SELECT b.id, b.fullName,  SUM(c.price * c.quantity) [total], a.payCus, SUM(c.price * c.quantity) - a.payCus [else], b.phone, b.email, b.[address] FROM receipt a LEFT JOIN customers b ON a.idCus = b.id LEFT JOIN receipt_detail c ON a.id = c.idReceipt WHERE a.[status] = N'Trả Trước' GROUP BY b.id, b.fullName, b.phone, b.email, b.[address], a.payCus ";
+                string strSql = @"SELECT b.id, b.fullName,  SUM(c.price * c.quantity) [total],(SELECT e.debtMoney 
+                                                            FROM debt_sheet e WHERE e.idCus = b.id AND e.[status] = N'Hoàn Tất' AND e.createdDate > a.dateReceipt) +a.payCus[payCus], SUM(c.price * c.quantity) - ((SELECT e.debtMoney
+                                                            FROM debt_sheet e WHERE e.idCus = b.id AND e.[status] = N'Hoàn Tất' AND e.createdDate > a.dateReceipt) +a.payCus ) [else], b.phone, b.email, b.[address]
+                                                            FROM receipt a LEFT JOIN customers b ON a.idCus = b.id LEFT JOIN receipt_detail c ON a.id = c.idReceipt
+                                                            WHERE a.[status] = N'Trả Trước'
+                                                            GROUP BY b.id, b.fullName, b.phone, b.email, b.[address], a.payCus,a.dateReceipt";
                 provider.Connect();
                 DataTable dt = provider.Select(CommandType.Text, strSql);
                 return dt;

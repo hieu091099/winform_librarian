@@ -149,6 +149,8 @@ namespace ManageBook.GUI
             // 
             // dgOrderBook
             // 
+            this.dgOrderBook.AllowUserToAddRows = false;
+            this.dgOrderBook.AllowUserToDeleteRows = false;
             this.dgOrderBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOrderBook.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgOrderBook.Location = new System.Drawing.Point(0, 0);
@@ -340,6 +342,8 @@ namespace ManageBook.GUI
             // 
             // dgSheetOwn
             // 
+            this.dgSheetOwn.AllowUserToAddRows = false;
+            this.dgSheetOwn.AllowUserToDeleteRows = false;
             this.dgSheetOwn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSheetOwn.Location = new System.Drawing.Point(6, 49);
             this.dgSheetOwn.Name = "dgSheetOwn";
@@ -359,6 +363,8 @@ namespace ManageBook.GUI
             // 
             // dgOwn
             // 
+            this.dgOwn.AllowUserToAddRows = false;
+            this.dgOwn.AllowUserToDeleteRows = false;
             this.dgOwn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOwn.Location = new System.Drawing.Point(6, 20);
             this.dgOwn.Name = "dgOwn";

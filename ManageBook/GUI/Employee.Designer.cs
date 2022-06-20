@@ -88,6 +88,8 @@ namespace ManageBook.GUI
             // 
             // dgNhanVien
             // 
+            this.dgNhanVien.AllowUserToAddRows = false;
+            this.dgNhanVien.AllowUserToDeleteRows = false;
             this.dgNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgNhanVien.Location = new System.Drawing.Point(3, 205);
             this.dgNhanVien.Name = "dgNhanVien";

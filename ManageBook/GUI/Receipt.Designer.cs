@@ -195,6 +195,8 @@ namespace ManageBook.GUI
             // 
             // dgReceipt
             // 
+            this.dgReceipt.AllowUserToAddRows = false;
+            this.dgReceipt.AllowUserToDeleteRows = false;
             this.dgReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgReceipt.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgReceipt.Location = new System.Drawing.Point(7, 49);
@@ -251,6 +253,8 @@ namespace ManageBook.GUI
             // 
             // dgReceiptDetail
             // 
+            this.dgReceiptDetail.AllowUserToAddRows = false;
+            this.dgReceiptDetail.AllowUserToDeleteRows = false;
             this.dgReceiptDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgReceiptDetail.Location = new System.Drawing.Point(6, 49);
             this.dgReceiptDetail.Name = "dgReceiptDetail";

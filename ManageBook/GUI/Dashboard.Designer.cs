@@ -49,6 +49,7 @@ namespace ManageBook.GUI
             this.accordionControlElement14 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement15 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement20 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
@@ -61,7 +62,6 @@ namespace ManageBook.GUI
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.accordionControlElement20 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.pContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
@@ -222,6 +222,14 @@ namespace ManageBook.GUI
             this.accordionControlElement15.Text = "Danh Sách QĐ";
             this.accordionControlElement15.Click += new System.EventHandler(this.accordionControlElement15_Click);
             // 
+            // accordionControlElement20
+            // 
+            this.accordionControlElement20.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement20.ImageOptions.Image")));
+            this.accordionControlElement20.Name = "accordionControlElement20";
+            this.accordionControlElement20.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement20.Text = "Đăng Xuất";
+            this.accordionControlElement20.Click += new System.EventHandler(this.accordionControlElement20_Click);
+            // 
             // fluentDesignFormControl1
             // 
             this.fluentDesignFormControl1.FluentDesignForm = this;
@@ -315,14 +323,6 @@ namespace ManageBook.GUI
             this.simpleButton1.TabIndex = 2;
             this.simpleButton1.Text = "simpleButton1";
             // 
-            // accordionControlElement20
-            // 
-            this.accordionControlElement20.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement20.ImageOptions.Image")));
-            this.accordionControlElement20.Name = "accordionControlElement20";
-            this.accordionControlElement20.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement20.Text = "Đăng Xuất";
-            this.accordionControlElement20.Click += new System.EventHandler(this.accordionControlElement20_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +338,8 @@ namespace ManageBook.GUI
             this.Controls.Add(this.barDockControlTop);
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "Dashboard";
             this.NavigationControl = this.accordionControl1;
             this.Text = "Dashboard";

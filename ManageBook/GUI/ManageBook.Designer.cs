@@ -59,6 +59,8 @@ namespace ManageBook.GUI
             // 
             // dgBooks
             // 
+            this.dgBooks.AllowUserToAddRows = false;
+            this.dgBooks.AllowUserToDeleteRows = false;
             this.dgBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgBooks.Location = new System.Drawing.Point(3, 206);
             this.dgBooks.Name = "dgBooks";

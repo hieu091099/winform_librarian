@@ -2250,14 +2250,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ManageBook.exe" size="434160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ManageBook.exe" size="434672">
       <assemblyIdentity name="ManageBook" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Wo1z424m539lZCbie6vvjnfLymDUg7FVbahChQBmNLE=</dsig:DigestValue>
+        <dsig:DigestValue>RtFfZX5X2hLyPaNS0zKnHNYLo3B3lZT3sFEqJRyeTWM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
